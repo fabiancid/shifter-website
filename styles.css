@@ -22,6 +22,7 @@
   --soft: #eceae6;
   --orange: #ff3f12;
   --orange-deep: #e94713;
+  --orange-text: #c5320e;
   --orange-soft: #ffae86;
   --teal: #14b8a6;
   --blue: #2d9cdb;
@@ -209,7 +210,7 @@ select {
 .eyebrow,
 .section-kicker {
   margin: 0 0 18px;
-  color: var(--orange);
+  color: var(--orange-text);
   font-size: 13px;
   font-weight: 800;
   line-height: 1.25;
@@ -217,7 +218,7 @@ select {
 }
 
 .hero-title-block h1 {
-  max-width: 340px;
+  max-width: 440px;
   margin: 0;
   font-family: "Bricolage Grotesque", "Bricolage Grotesque Placeholder", sans-serif;
   font-size: 50px;
@@ -308,7 +309,7 @@ select {
 
 .hero-copy h2 strong {
   display: block;
-  color: var(--orange);
+  color: var(--orange-text);
   font-weight: 700;
 }
 
@@ -489,6 +490,9 @@ select {
 }
 
 .new-chat {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 96px;
   height: 28px;
   border: 0;
@@ -595,7 +599,7 @@ select {
 }
 
 .section {
-  padding: 104px 28px;
+  padding: 96px 28px;
   background: var(--paper);
   scroll-margin-top: 78px;
 }
@@ -637,11 +641,11 @@ select {
 }
 
 .reveal-item {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: translateY(0);
   transition:
-    opacity 640ms ease,
-    transform 640ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 360ms ease,
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -2859,7 +2863,7 @@ select {
   padding: 12px 22px;
   border-radius: 999px;
   background: #fff0ea;
-  color: var(--orange);
+  color: var(--orange-text);
   font-size: 15px;
   font-weight: 800;
 }
@@ -2907,7 +2911,7 @@ select {
   position: absolute;
   left: 84px;
   top: 36px;
-  bottom: 210px;
+  bottom: 170px;
   width: 2px;
   overflow: hidden;
   background: #e5e2dc;
@@ -2927,7 +2931,7 @@ select {
   grid-template-columns: 170px minmax(290px, 370px) minmax(320px, 1fr);
   gap: 42px;
   align-items: start;
-  min-height: 520px;
+  min-height: 460px;
   padding: 18px 0;
 }
 
@@ -5126,6 +5130,30 @@ select {
     opacity: 1;
     filter: none;
     transform: none;
+    transition-delay: 0ms !important;
+  }
+
+  .scroll-roadmap {
+    --roadmap-progress: 100%;
+  }
+
+  .roadmap-rail span {
+    height: 100%;
+  }
+
+  .roadmap-step .roadmap-dot,
+  .roadmap-step .roadmap-copy,
+  .roadmap-step .roadmap-visual {
+    opacity: 1;
+    pointer-events: auto;
+    filter: none;
+    transform: none;
+  }
+
+  .roadmap-step .iso-pill,
+  .roadmap-step .iso-stack,
+  .roadmap-step .iso-tile {
+    animation: none !important;
   }
 
   .timeline-card.is-active {
@@ -5443,7 +5471,7 @@ body {
 }
 
 .section {
-  padding: clamp(88px, 10vw, 150px) 28px;
+  padding: clamp(76px, 8vw, 124px) 28px;
 }
 
 .section-inner,
@@ -5541,7 +5569,7 @@ body {
 .notification-card span {
   display: block;
   margin-bottom: 8px;
-  color: var(--orange);
+  color: var(--orange-text);
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
@@ -5610,7 +5638,7 @@ body {
 }
 
 .flow-label {
-  color: var(--orange);
+  color: var(--orange-text);
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
@@ -6307,7 +6335,7 @@ body {
 .operating-assets-section {
   position: relative;
   overflow: hidden;
-  padding-top: clamp(92px, 9vw, 142px);
+  padding-top: clamp(78px, 7vw, 118px);
   background:
     radial-gradient(circle at 78% 46%, rgba(255, 63, 18, 0.08), transparent 32%),
     #fffefa;
@@ -6321,7 +6349,7 @@ body {
 .operating-assets-section .section-inner::before {
   content: "";
   position: absolute;
-  top: calc(clamp(92px, 9vw, 142px) * -1 + 1px);
+  top: calc(clamp(78px, 7vw, 118px) * -1 + 1px);
   left: 0;
   right: 0;
   height: 1px;
@@ -6939,5 +6967,68 @@ body {
 
   .layer-dashboard {
     bottom: 254px;
+  }
+}
+
+/* Review-pass density tuning: keep the approved visual system, but remove the broken-feeling blank space. */
+@media (min-width: 901px) {
+  .hero-stage {
+    bottom: 72px;
+  }
+
+  .laptop {
+    top: 0;
+    height: 360px;
+  }
+
+  .section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .notification-stack {
+    min-height: 500px;
+  }
+
+  .notif-two {
+    top: 92px;
+  }
+
+  .notif-three {
+    top: 194px;
+  }
+
+  .notif-four {
+    top: 296px;
+  }
+
+  .notif-five {
+    top: 398px;
+  }
+
+  .operating-assets-reference-wrap {
+    min-height: 540px;
+    transform: translateX(clamp(0px, 1vw, 16px));
+  }
+
+  .operating-assets-reference {
+    width: min(720px, calc(100% + 120px));
+  }
+
+  .roadmap-step {
+    min-height: 390px;
+  }
+
+  .roadmap-step .roadmap-dot,
+  .roadmap-step .roadmap-copy,
+  .roadmap-step .roadmap-visual {
+    opacity: 1;
+    pointer-events: auto;
+    filter: none;
+    transform: none;
+  }
+
+  .roadmap-rail {
+    bottom: 120px;
   }
 }

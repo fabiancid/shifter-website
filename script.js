@@ -157,10 +157,19 @@ if (timeline) {
     timelineFrame = window.requestAnimationFrame(updateTimeline);
   };
 
-  setTimelineStep(0);
-  updateTimeline();
+  if (prefersReducedMotion) {
+    timeline.style.setProperty("--roadmap-progress", "100%");
+    timelineSteps.forEach((step, index) => {
+      const isFinalStep = index === timelineSteps.length - 1;
 
-  if (!prefersReducedMotion) {
+      step.classList.add("is-revealed");
+      step.classList.toggle("is-active", isFinalStep);
+      step.classList.toggle("is-past", !isFinalStep);
+    });
+  } else {
+    setTimelineStep(0);
+    updateTimeline();
+
     window.addEventListener("scroll", requestTimelineUpdate, { passive: true });
     window.addEventListener("resize", requestTimelineUpdate);
   }
