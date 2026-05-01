@@ -210,27 +210,54 @@
               </p>
             </div>
 
-            <div class="notification-stack" aria-hidden="true">
-              <article class="notification-card notif-one">
-                <span>Slack</span>
-                <strong>Can someone confirm who owns this?</strong>
-              </article>
-              <article class="notification-card notif-two">
-                <span>Inbox</span>
-                <strong>New request arrived without the full context.</strong>
-              </article>
-              <article class="notification-card notif-three">
-                <span>Sheets</span>
-                <strong>Report rebuilt manually from scattered sources.</strong>
-              </article>
-              <article class="notification-card notif-four">
-                <span>AI pilot</span>
-                <strong>Useful output, disconnected from the workflow.</strong>
-              </article>
-              <article class="notification-card notif-five">
-                <span>CRM</span>
-                <strong>Next step unclear. Escalation goes to the nearest senior human.</strong>
-              </article>
+            <div class="founder-attention-queue" aria-hidden="true">
+              <div class="attention-map">
+                <span class="queue-eyebrow">Founder attention queue</span>
+                <svg class="attention-lines" viewBox="0 0 620 500" preserveAspectRatio="none" focusable="false">
+                  <path d="M128 102 C218 104 242 178 300 226"></path>
+                  <path d="M118 250 C202 248 242 246 298 246"></path>
+                  <path d="M138 372 C218 364 244 314 300 272"></path>
+                  <path d="M492 102 C402 104 378 178 320 226"></path>
+                  <path d="M502 250 C418 248 378 246 322 246"></path>
+                  <path d="M482 372 C402 364 376 314 320 272"></path>
+                  <path class="attention-spine" d="M310 314 C310 348 310 372 310 406"></path>
+                </svg>
+
+                <article class="attention-source source-chat">
+                  <span>Chat</span>
+                  <strong>Owner unclear</strong>
+                </article>
+                <article class="attention-source source-inbox">
+                  <span>Inbox</span>
+                  <strong>Missing context</strong>
+                </article>
+                <article class="attention-source source-workflow">
+                  <span>Workflow</span>
+                  <strong>Needs judgment</strong>
+                </article>
+                <article class="attention-source source-reporting">
+                  <span>Reporting</span>
+                  <strong>Manual rebuild</strong>
+                </article>
+                <article class="attention-source source-ai">
+                  <span>AI</span>
+                  <strong>Disconnected AI output</strong>
+                </article>
+                <article class="attention-source source-crm">
+                  <span>CRM</span>
+                  <strong>Next step unclear</strong>
+                </article>
+
+                <div class="attention-choke">
+                  <span>Waiting on founder</span>
+                  <strong>Founder attention</strong>
+                </div>
+
+                <div class="attention-queue-note">
+                  <span>Operating layer gap</span>
+                  <strong>Every next move narrows to one person.</strong>
+                </div>
+              </div>
             </div>
           </div>
         </div>

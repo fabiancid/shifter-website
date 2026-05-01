@@ -24,7 +24,7 @@ const revealSelector = [
   ".hero-routing-visual",
   ".section-heading",
   ".mirror-copy > *",
-  ".notification-card",
+  ".founder-attention-queue",
   ".flow-panel",
   ".install-heading",
   ".operating-stack",
