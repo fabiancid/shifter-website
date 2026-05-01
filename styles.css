@@ -7032,3 +7032,87 @@ body {
     bottom: 120px;
   }
 }
+
+/* Local desktop typography tune: preserve the layout while improving headline measure. */
+@media (min-width: 901px) {
+  .mirror-copy h2 {
+    max-width: 660px;
+    font-size: clamp(44px, 3.7vw, 52px);
+    line-height: 1.04;
+  }
+
+  .pain-callouts {
+    gap: 8px;
+    margin-top: 28px;
+  }
+
+  .pain-callouts span {
+    min-height: 44px;
+  }
+
+  .notification-card strong {
+    font-size: clamp(18px, 1.8vw, 24px);
+    line-height: 1.18;
+  }
+}
+
+@media (min-width: 1181px) {
+  .mirror-layout {
+    grid-template-columns: minmax(620px, 1fr) minmax(440px, 0.78fr);
+    gap: clamp(40px, 4vw, 56px);
+  }
+
+  .mirror-copy > p {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 1061px) and (max-width: 1300px) {
+  .hero-grid {
+    grid-template-columns: minmax(380px, 1.08fr) minmax(230px, 280px) minmax(280px, 0.84fr);
+    gap: clamp(16px, 1.8vw, 22px);
+    max-width: 1180px;
+  }
+
+  .hero-title-block {
+    padding-left: clamp(24px, 2.4vw, 32px);
+  }
+
+  .hero-title-block h1 {
+    max-width: 410px;
+    font-size: clamp(39px, 3.6vw, 44px);
+    line-height: 1.08;
+  }
+
+  .hero-title-block .hero-line {
+    white-space: nowrap;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 360px;
+    padding-right: clamp(18px, 2vw, 22px);
+    padding-left: clamp(22px, 2vw, 28px);
+  }
+
+  .hero-copy h2,
+  .hero-copy p {
+    max-width: 315px;
+  }
+
+  .fit-cta-section .split-heading {
+    grid-template-columns: minmax(620px, 1fr) minmax(320px, 0.64fr);
+    gap: clamp(32px, 3.4vw, 48px);
+    max-width: 1180px;
+  }
+
+  .fit-cta-section .split-heading h2 {
+    max-width: 700px;
+    font-size: clamp(38px, 3.2vw, 40px);
+    line-height: 1.12;
+  }
+
+  .fit-cta-section .split-heading .section-lede {
+    max-width: 540px;
+  }
+}
