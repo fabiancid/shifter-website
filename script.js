@@ -174,3 +174,83 @@ if (timeline) {
     window.addEventListener("resize", requestTimelineUpdate);
   }
 }
+
+const horizontalScrollers = Array.from(
+  document.querySelectorAll("[data-horizontal-scroll], .operator-rail, .icp-tabs"),
+).filter((scroller) => scroller.scrollWidth > scroller.clientWidth);
+
+horizontalScrollers.forEach((scroller) => {
+  if (!scroller.hasAttribute("tabindex")) {
+    scroller.setAttribute("tabindex", "0");
+  }
+
+  let pointerId;
+  let startX = 0;
+  let startScrollLeft = 0;
+  let didDrag = false;
+
+  const stopDragging = (event) => {
+    if (pointerId === undefined || event.pointerId !== pointerId) {
+      return;
+    }
+
+    scroller.classList.remove("is-dragging");
+
+    if (
+      typeof scroller.releasePointerCapture === "function" &&
+      (typeof scroller.hasPointerCapture !== "function" || scroller.hasPointerCapture(pointerId))
+    ) {
+      scroller.releasePointerCapture(pointerId);
+    }
+
+    pointerId = undefined;
+  };
+
+  scroller.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0 || event.pointerType === "touch") {
+      return;
+    }
+
+    pointerId = event.pointerId;
+    startX = event.clientX;
+    startScrollLeft = scroller.scrollLeft;
+    didDrag = false;
+    scroller.classList.add("is-dragging");
+
+    if (typeof scroller.setPointerCapture === "function") {
+      scroller.setPointerCapture(pointerId);
+    }
+  });
+
+  scroller.addEventListener("pointermove", (event) => {
+    if (pointerId === undefined || event.pointerId !== pointerId) {
+      return;
+    }
+
+    const delta = event.clientX - startX;
+
+    if (Math.abs(delta) > 3) {
+      didDrag = true;
+    }
+
+    scroller.scrollLeft = startScrollLeft - delta;
+  });
+
+  scroller.addEventListener("pointerup", stopDragging);
+  scroller.addEventListener("pointercancel", stopDragging);
+  scroller.addEventListener("lostpointercapture", stopDragging);
+
+  scroller.addEventListener(
+    "click",
+    (event) => {
+      if (!didDrag) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      didDrag = false;
+    },
+    true,
+  );
+});
