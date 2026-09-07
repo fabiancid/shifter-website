@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" fill="none">
+  <defs>
+    <filter id="paper" x="-40%" y="-40%" width="180%" height="200%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#343b2d" flood-opacity=".09"/>
+      <feDropShadow dx="0" dy="20" stdDeviation="16" flood-color="#343b2d" flood-opacity=".13"/>
+    </filter>
+  </defs>
+  <path fill="#eef0e6" d="M0 0h1200v750H0z"/>
+  <ellipse cx="602" cy="579" rx="317" ry="25" fill="#d6dacb" opacity=".5"/>
+  <g filter="url(#paper)" transform="rotate(-11 463 386)">
+    <rect x="291" y="183" width="290" height="375" rx="7" fill="#f9f8ef" stroke="#d7d9ca"/>
+    <rect x="342" y="241" width="184" height="245" rx="92" stroke="#daddd0" stroke-width="2" stroke-dasharray="5 8"/>
+    <circle cx="434" cy="362" r="31" fill="#e0e3d5"/>
+  </g>
+  <g filter="url(#paper)" transform="rotate(9 703 381)">
+    <rect x="525" y="158" width="322" height="409" rx="7" fill="#fffdf5" stroke="#d7d9ca"/>
+    <path d="M766 158h81v81Z" fill="#e9e9dc"/>
+    <circle cx="684" cy="352" r="72" fill="#f5dfce"/>
+    <circle cx="684" cy="352" r="29" fill="#be4827"/>
+  </g>
+  <g filter="url(#paper)">
+    <path d="m796 458 109 107" stroke="#292b28" stroke-width="37" stroke-linecap="round"/>
+    <circle cx="713" cy="374" r="122" stroke="#292b28" stroke-width="24"/>
+    <path d="M614 333a104 104 0 0 1 117-61" stroke="#6e7365" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <path d="M261 568h33m-16-16v32M929 208h33m-16-16v32" stroke="#9da58e" stroke-width="2"/>
+</svg>

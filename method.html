@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Visibility Snapshot method — how Shifter scores 30 buyer prompts</title>
+    <meta
+      name="description"
+      content="How Shifter’s AI Visibility Snapshot works: 30 high-intent buyer prompts across ChatGPT Search, Gemini, Claude, and Perplexity Search — scoring, competitor shortlists, and retest."
+    />
+    <link rel="canonical" href="https://shifter.co/method" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#F7F7F4" />
+    <link rel="preload" href="/assets/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/Geist-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Shifter" />
+    <meta property="og:url" content="https://shifter.co/method" />
+    <meta property="og:title" content="AI Visibility Snapshot method — Shifter" />
+    <meta
+      property="og:description"
+      content="30 prompts. Four AI engines. A clear visibility score, competitor shortlists, and prioritized first fixes."
+    />
+    <meta property="og:image" content="https://shifter.co/assets/og-image-aeo-generic-20260707.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI Visibility Snapshot method — Shifter" />
+    <meta
+      name="twitter:description"
+      content="How Shifter tests 30 buyer questions across ChatGPT, Gemini, Claude, and Perplexity — then scores and retests."
+    />
+    <meta name="twitter:image" content="https://shifter.co/assets/og-image-aeo-generic-20260707.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://shifter.co/#organization",
+            "name": "Shifter",
+            "legalName": "Shifter Strategy FZ-LLC",
+            "url": "https://shifter.co/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://shifter.co/assets/apple-touch-icon.png",
+              "width": 180,
+              "height": 180
+            },
+            "email": "hello@shifter.co",
+            "foundingDate": "2024-04",
+            "sameAs": [
+              "https://www.linkedin.com/company/shifterai",
+              "https://www.linkedin.com/in/fabian-cid-845ab392/",
+              "https://cal.com/fabiancid/discoverycall"
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://shifter.co/method#webpage",
+            "url": "https://shifter.co/method",
+            "name": "AI Visibility Snapshot method",
+            "description": "How Shifter’s AI Visibility Snapshot tests 30 buyer prompts across four AI engines, scores visibility, and retests.",
+            "isPartOf": { "@id": "https://shifter.co/#website" },
+            "about": { "@id": "https://shifter.co/#organization" },
+            "breadcrumb": { "@id": "https://shifter.co/method#breadcrumb" },
+            "mainEntity": { "@id": "https://shifter.co/method#faq" }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://shifter.co/#website",
+            "url": "https://shifter.co/",
+            "name": "Shifter",
+            "publisher": { "@id": "https://shifter.co/#organization" }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://shifter.co/method#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://shifter.co/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Method",
+                "item": "https://shifter.co/method"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://shifter.co/method#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Is Shifter the same as shifter.io?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Shifter (shifter.co) is Shifter Strategy FZ-LLC — a B2B SEO, AEO, and GEO service founded in April 2024 (UAE trade licence 17003064). It is not affiliated with shifter.io (proxies) or getshifter.io (WordPress hosting). Never treat shifter.io mentions as a Shifter win."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is an AI Visibility Snapshot?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Shifter’s AI Visibility Snapshot is a free baseline that tests 30 high-intent buyer questions across ChatGPT Search, Gemini with web grounding, Claude with web search, and Perplexity Search. You receive a visibility score, competitor shortlists, answer captures, source patterns, and prioritized first fixes — delivered to your inbox within two business days, no call required."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is the visibility score calculated?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Each of the 30 prompts is checked for whether your brand is mentioned, recommended, or cited in the answer and in supporting sources. Mentions, recommendations, and citations are weighted into a single visibility score so you can compare engines and track change on retest. The score is a diagnostic baseline, not a ranking guarantee."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What happens on retest?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "On the monthly service, Shifter re-runs the same 30 buyer questions after SEO/AEO/GEO fixes. You get a plain-English report of what changed across engines. The day-90 guarantee uses the same prompt set: if the visibility score has not improved, Shifter keeps working free until it does (access in week one; shipped fixes not left blocked)."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/site-pages.css" />
+    <style>
+      /* Page-local layout; inherits Geist + site-pages when deployed on shifter.co */
+      body.page-method {
+        --paper: #F7F7F4;
+        --ink: #0B1020;
+        --muted: #686A70;
+        --accent: #ff3f12;
+        --line: #DEDEDA;
+        background: var(--paper);
+        color: var(--ink);
+      }
+      body.page-method .method-wrap {
+        width: min(760px, calc(100% - 48px));
+        margin: 0 auto;
+        padding: 72px 0 40px;
+      }
+      body.page-method .crumbs {
+        font-size: 14px;
+        color: var(--muted);
+        margin: 0 0 28px;
+      }
+      body.page-method .crumbs a { color: inherit; text-decoration: none; }
+      body.page-method .crumbs a:hover { color: var(--accent); }
+      body.page-method .crumbs span[aria-hidden] { margin: 0 8px; opacity: .55; }
+      body.page-method .section-kicker {
+        color: var(--muted);
+        margin: 0 0 16px;
+      }
+      body.page-method h1 {
+        margin: 0 0 18px;
+        font-size: clamp(36px, 5vw, 58px);
+        letter-spacing: -0.05em;
+        line-height: 1.05;
+        font-weight: 600;
+      }
+      body.page-method .lede {
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--muted);
+        max-width: 48ch;
+        margin: 0 0 36px;
+      }
+      body.page-method .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 0 0 48px;
+      }
+      body.page-method .chip {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 14px;
+        color: var(--ink);
+      }
+      body.page-method h2 {
+        margin: 48px 0 14px;
+        font-size: 28px;
+        letter-spacing: -0.04em;
+        font-weight: 600;
+      }
+      body.page-method p, body.page-method li {
+        font-size: 17px;
+        line-height: 1.75;
+        color: #51584d;
+      }
+      body.page-method ol, body.page-method ul { padding-left: 1.2em; }
+      body.page-method li + li { margin-top: 8px; }
+      body.page-method .score-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0 8px;
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+      }
+      body.page-method .score-table th,
+      body.page-method .score-table td {
+        text-align: left;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+        font-size: 15px;
+        vertical-align: top;
+      }
+      body.page-method .score-table th {
+        background: #f1f2e9;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      body.page-method .score-table tr:last-child td { border-bottom: 0; }
+      body.page-method .callout {
+        margin: 28px 0;
+        padding: 22px 24px;
+        border-radius: 18px;
+        background: #fff;
+        border: 1px solid var(--line);
+      }
+      body.page-method .callout strong { color: var(--ink); }
+      body.page-method .faq details {
+        border-top: 1px solid var(--line);
+        padding: 18px 0;
+      }
+      body.page-method .faq details:last-child { border-bottom: 1px solid var(--line); }
+      body.page-method .faq summary {
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 17px;
+        letter-spacing: -0.02em;
+        list-style: none;
+      }
+      body.page-method .faq summary::-webkit-details-marker { display: none; }
+      body.page-method .faq details p { margin: 12px 0 0; }
+      body.page-method .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin: 40px 0 12px;
+      }
+      body.page-method .cta-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--ink);
+        color: #fff !important;
+        text-decoration: none;
+        border-radius: 999px;
+        padding: 14px 22px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+      body.page-method .cta-primary:hover { background: #222; }
+      body.page-method .cta-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 15px;
+        padding: 14px 8px;
+      }
+      body.page-method .cta-secondary:hover { color: var(--accent); }
+      body.page-method .disambig {
+        margin: 36px 0 0;
+        padding: 20px 22px;
+        border-left: 3px solid var(--accent);
+        background: #fff8f4;
+        border-radius: 0 14px 14px 0;
+      }
+      body.page-method .disambig p { margin: 0; color: var(--ink); font-size: 15px; line-height: 1.65; }
+    </style>
+    <script defer src="/analytics.js"></script>
+  </head>
+  <body class="inner-page page-method">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header" data-header>
+      <a class="brand" href="/" aria-label="shifter home">shifter<span>.</span></a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" data-nav-toggle>
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
+        <a href="/#proof">Our approach</a>
+        <a href="/method" aria-current="page">Method</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/insights">Insights</a>
+        <a class="nav-cta-mobile" href="/#report">Get a free snapshot</a>
+      </nav>
+      <a class="header-cta" href="/#report">Get a free snapshot</a>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <article class="method-wrap">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span aria-hidden="true">/</span><span>Method</span>
+        </nav>
+
+        <p class="section-kicker">The method</p>
+        <h1>AI Visibility Snapshot</h1>
+        <p class="lede">
+          Thirty real buyer questions. Four AI engines with web search. A score you can retest —
+          so you know whether search and AI answers actually recommend you.
+        </p>
+
+        <div class="chip-row" aria-label="Snapshot essentials">
+          <span class="chip">30 buyer prompts</span>
+          <span class="chip">4 engines</span>
+          <span class="chip">Visibility score</span>
+          <span class="chip">Retest-ready</span>
+        </div>
+
+        <h2>What we test</h2>
+        <p>
+          We build a set of <strong>30 high-intent buyer questions</strong> for your category —
+          the prompts a serious buyer would type into ChatGPT, Gemini, Claude, or Perplexity when
+          shortlisting vendors. Prompts cover problem-aware, solution-aware, and brand-comparison intent.
+        </p>
+        <p>
+          Each prompt is run with <strong>web search / grounding enabled</strong> on four surfaces:
+        </p>
+        <ul>
+          <li>ChatGPT Search</li>
+          <li>Gemini (web grounding)</li>
+          <li>Claude (web search)</li>
+          <li>Perplexity Search</li>
+        </ul>
+
+        <h2>How scoring works</h2>
+        <p>
+          For every prompt × engine pair we capture the answer and supporting sources, then mark
+          whether your brand is <strong>mentioned</strong>, <strong>recommended</strong>, or
+          <strong>cited</strong>. Those signals roll into a single visibility score so you can
+          compare engines and track change after fixes.
+        </p>
+        <table class="score-table">
+          <thead>
+            <tr>
+              <th>Signal</th>
+              <th>What it means</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mention</td>
+              <td>Your brand name appears in the answer text.</td>
+            </tr>
+            <tr>
+              <td>Recommendation</td>
+              <td>You are positioned as a fit / option for the buyer’s need.</td>
+            </tr>
+            <tr>
+              <td>Citation</td>
+              <td>Your site or a source about you is linked or used as evidence.</td>
+            </tr>
+            <tr>
+              <td>Competitor shortlist</td>
+              <td>Who else shows up for the same prompt — so gaps are concrete.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          The Snapshot is a <strong>diagnostic baseline</strong>, not a ranking guarantee. The July 2026
+          research note on this site is historical research from an earlier study design — not a current
+          client outcome.
+        </p>
+
+        <h2>What you receive</h2>
+        <ol>
+          <li>Visibility score across the four engines</li>
+          <li>Competitor shortlists per prompt cluster</li>
+          <li>Answer captures and source patterns</li>
+          <li>Prioritized first SEO / AEO / GEO fixes</li>
+        </ol>
+        <div class="callout">
+          <p><strong>Free. Inbox delivery in two business days.</strong> No call required.
+          Request it from the homepage Snapshot form.</p>
+        </div>
+
+        <h2>Retest loop</h2>
+        <p>
+          On the monthly service we ship the fixes, then <strong>re-run the same 30 questions</strong>
+          and show what changed in plain English. Day 90 uses that same prompt set: if the visibility
+          score has not improved, we keep working free until it does — provided access landed in week one
+          and shipped fixes were not left blocked.
+        </p>
+
+        <div class="disambig" role="note">
+          <p>
+            <strong>Not shifter.io.</strong> Shifter (shifter.co) is <strong>Shifter Strategy FZ-LLC</strong>
+            (UAE trade licence 17003064), a B2B SEO / AEO / GEO service. Unrelated to shifter.io (proxies)
+            and getshifter.io (WordPress hosting). Mentions of shifter.io never count as a Shifter win.
+          </p>
+        </div>
+
+        <section class="faq" id="faq" aria-labelledby="method-faq-title">
+          <h2 id="method-faq-title">FAQ</h2>
+          <details open>
+            <summary>Is Shifter the same as shifter.io?</summary>
+            <p>
+              <strong>No.</strong> Shifter / shifter.co is Shifter Strategy FZ-LLC — SEO, AEO, and GEO for B2B.
+              We are not affiliated with shifter.io or getshifter.io.
+            </p>
+          </details>
+          <details>
+            <summary>What is an AI Visibility Snapshot?</summary>
+            <p>
+              Shifter’s named method for testing 30 buyer prompts across four AI engines with web search,
+              then scoring mentions, recommendations, and citations into a retestable baseline.
+            </p>
+          </details>
+          <details>
+            <summary>How is the visibility score calculated?</summary>
+            <p>
+              Mention, recommendation, and citation signals across the 30 × 4 matrix are weighted into one
+              score so you can compare engines and measure change after fixes. Diagnostic — not a guarantee.
+            </p>
+          </details>
+          <details>
+            <summary>What happens on retest?</summary>
+            <p>
+              Same 30 prompts, same engines, after the work. You get a report of what moved. The day-90
+              guarantee is tied to that score improving under the stated conditions.
+            </p>
+          </details>
+        </section>
+
+        <div class="cta-row">
+          <a class="cta-primary" href="/#report">Get my free Snapshot <span aria-hidden="true">↗</span></a>
+          <a class="cta-secondary" href="/ai-visibility-retainer.html">Monthly service details <span aria-hidden="true">↗</span></a>
+          <a class="cta-secondary" href="/about">About Shifter <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer" aria-label="Shifter footer">
+      <div class="site-footer-inner">
+        <a class="footer-brand" href="/" aria-label="shifter home">shifter<span>.</span></a>
+        <p>Integrated SEO, AEO, and GEO for B2B companies. Shifter Strategy FZ-LLC.</p>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="/method">Method</a>
+          <a href="/about">About</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="/ai-visibility-retainer.html">Retainer</a>
+          <a href="/insights">Insights</a>
+          <a href="mailto:hello@shifter.co">hello@shifter.co</a>
+        </nav>
+        <nav class="footer-nav footer-legal-nav" aria-label="Legal navigation">
+          <a href="/privacy-policy.html">Privacy</a>
+          <a href="/terms-and-conditions.html">Terms</a>
+          <a href="/cookie-policy.html">Cookies</a>
+          <a href="/data-processing-addendum.html">DPA</a>
+          <a href="/subprocessors.html">Subprocessors</a>
+          <a href="/acceptable-use-ai-policy.html">AI &amp; Acceptable Use</a>
+        </nav>
+        <p class="footer-copyright">© 2026 Shifter Strategy FZ-LLC · Licence 17003064</p>
+      </div>
+    </footer>
+    <script src="/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,2010 @@
+/*
+ * Shifter Signal System — homepage composition layer
+ *
+ * Loaded after styles.css. Everything is scoped to body.signal-system so the
+ * supporting pages that share styles.css cannot regress.
+ *
+ * The homepage is one continuous surface, not a stack of exhibits:
+ *   paper  — hero, then the stage (engines → console → answer pair)
+ *   ink    — a slab that rises out of the paper: cadence, offer, disclosures
+ *   signal — a slab that rises out of the ink: the Snapshot request
+ * Structural geometry that used to live in an inline <style> block in
+ * index.html now lives here, so the page has two stylesheets rather than three
+ * layers arguing with each other.
+ */
+
+body.signal-system {
+  --signal-ink: #0B1020;
+  --signal-paper: #F7F7F4;
+  --signal-surface: #FFFFFF;
+  --signal-accent: #FF3D12;
+  --signal-muted: #686A70;
+  --signal-line: #DEDEDA;
+
+  /* Map the legacy homepage tokens to the consolidated system. */
+  --ink: var(--signal-ink);
+  --paper: var(--signal-paper);
+  --muted: var(--signal-muted);
+  --line: var(--signal-line);
+  --soft: color-mix(in srgb, var(--signal-line) 58%, var(--signal-paper));
+  --orange: var(--signal-accent);
+  --orange-deep: var(--signal-accent);
+  --orange-text: color-mix(in srgb, var(--signal-accent) 68%, var(--signal-ink));
+  --orange-soft: color-mix(in srgb, var(--signal-accent) 24%, var(--signal-surface));
+
+  --sig-rule: rgb(11 16 32 / 9%);
+  --sig-rule-strong: rgb(11 16 32 / 16%);
+  --sig-accent-ink: color-mix(in srgb, var(--signal-accent) 70%, var(--signal-ink));
+  --sig-alert: color-mix(in srgb, var(--signal-accent) 76%, var(--signal-ink));
+  /* Secondary copy on the signal-orange field. #FF3D12 is only a 5.37:1
+     background for midnight ink, so tinting eats the AA margin fast: 76% ink
+     measures 4.13:1 and fails. This is the floor, not a preference. */
+  --sig-on-accent: rgb(11 16 32 / 92%);
+  --sig-on-accent-line: rgb(11 16 32 / 20%);
+  --sig-on-ink: rgb(255 255 255 / 70%);
+  --sig-on-ink-line: rgb(255 255 255 / 14%);
+  --sig-shadow-2: 0 1px 2px rgb(11 16 32 / 5%), 0 22px 54px rgb(11 16 32 / 9%);
+  --sig-ease: cubic-bezier(0.22, 0.8, 0.2, 1);
+  /* Corner of the stacked slabs, and the distance each one rises into the
+     surface above it. One value keeps the two transitions identical. */
+  --sig-slab: clamp(18px, 2.6vw, 32px);
+
+  background: var(--signal-paper);
+  color: var(--signal-ink);
+  font-family: "Geist", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* --------------------------------------------------------------- primitives */
+
+body.signal-system h1,
+body.signal-system h2,
+body.signal-system h3,
+body.signal-system h4,
+body.signal-system .brand,
+body.signal-system .footer-brand {
+  font-family: "Geist", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 600;
+}
+
+body.signal-system :is(
+  .theater-greet,
+  .ta-chip-shifter,
+  .ac-fav-shifter,
+  .ac-cname,
+  .evidence-stats strong
+) {
+  font-family: "Geist", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 600;
+}
+
+body.signal-system ::selection {
+  background: color-mix(in srgb, var(--signal-accent) 24%, var(--signal-surface));
+  color: var(--signal-ink);
+}
+
+body.signal-system :focus-visible {
+  outline: 3px solid var(--signal-accent);
+  outline-offset: 3px;
+}
+
+/* Tonal surfaces need a focus ring that survives their own background. */
+body.signal-system .hyb-final :focus-visible {
+  outline-color: var(--signal-ink);
+}
+
+body.signal-system .hyb-offer :focus-visible {
+  outline-color: var(--signal-surface);
+}
+
+body.signal-system :is(.brand span, .footer-brand span, .accent-dot) {
+  color: var(--signal-accent);
+}
+
+body.signal-system .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  color: var(--sig-accent-ink);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+body.signal-system .eyebrow-live {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--signal-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal-accent) 16%, transparent);
+  animation: sig-live 2.6s var(--sig-ease) 6 both;
+}
+
+@keyframes sig-live {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.32; }
+}
+
+/* The measure every band shares. The gutters are the ones styles.css gives
+   .section (28 / 24 / 18), so the tonal slabs hang off exactly the same left
+   rail as the paper sections above them. */
+body.signal-system .hyb-wrap {
+  width: min(1240px, calc(100% - 56px));
+  margin-inline: auto;
+}
+
+body.signal-system :is(.hyb-offer, .hyb-final, .cadence, .disclosures) {
+  scroll-margin-top: 96px;
+}
+
+body.signal-system :is(
+  .hero,
+  .stage-section
+) {
+  background-color: var(--signal-paper);
+  color: var(--signal-ink);
+}
+
+body.signal-system .section h2 {
+  font-size: clamp(32px, 3.6vw, 50px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+/* ------------------------------------------------------------------ header */
+
+body.signal-system .site-header {
+  position: sticky;
+  min-height: 80px;
+  padding-inline: clamp(18px, 3vw, 40px);
+  border-bottom: 1px solid var(--sig-rule);
+  background-color: rgb(247 247 244 / 82%);
+  backdrop-filter: saturate(150%) blur(18px);
+}
+
+body.signal-system .site-header.is-scrolled {
+  background-color: rgb(247 247 244 / 94%);
+  box-shadow: 0 10px 34px rgb(11 16 32 / 6%);
+}
+
+body.signal-system .site-nav {
+  gap: clamp(20px, 2.6vw, 40px);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+body.signal-system :is(.site-nav, .site-nav a) {
+  color: var(--signal-muted);
+}
+
+body.signal-system .site-nav a {
+  position: relative;
+  padding: 6px 0;
+}
+
+body.signal-system .site-nav a::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1.5px;
+  background: var(--signal-accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 220ms var(--sig-ease);
+}
+
+body.signal-system .site-nav a:hover::after,
+body.signal-system .site-nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+body.signal-system .site-nav a:hover {
+  color: var(--signal-ink);
+}
+
+/* Reading-progress hairline. Absolutely positioned so it never becomes a
+   fourth grid column, and scroll-driven so it costs no JavaScript. */
+body.signal-system .header-rail {
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  body.signal-system .header-rail::before {
+    content: "";
+    display: block;
+    height: 100%;
+    background: var(--signal-accent);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    animation: sig-rail linear both;
+    animation-timeline: scroll(root block);
+  }
+
+  @keyframes sig-rail {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+}
+
+/* -------------------------------------------------------- calls to action */
+
+body.signal-system :is(
+  .header-cta,
+  .nav-cta-mobile,
+  .hero-cta,
+  .hyb-cta
+) {
+  border-radius: 10px;
+  background: var(--signal-accent);
+  color: var(--signal-ink) !important;
+}
+
+body.signal-system :is(.hyb-cta, .hyb-cta-secondary) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 22px;
+  border-radius: 10px;
+  font-weight: 650;
+  text-decoration: none;
+  transition:
+    transform 200ms var(--sig-ease),
+    box-shadow 200ms var(--sig-ease),
+    background-color 200ms var(--sig-ease);
+}
+
+body.signal-system .hyb-cta-secondary {
+  border: 1px solid rgb(255 255 255 / 44%);
+  color: var(--signal-surface) !important;
+}
+
+body.signal-system :is(.hyb-cta, .hyb-cta-secondary):hover {
+  transform: translateY(-2px);
+}
+
+body.signal-system .hyb-cta-secondary:hover {
+  background: rgb(255 255 255 / 8%);
+}
+
+body.signal-system .header-cta {
+  min-height: 50px;
+  border-radius: 12px;
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------- hero */
+
+body.signal-system .hero {
+  padding: clamp(56px, 6vw, 96px) 28px 176px;
+}
+
+body.signal-system .hero-grid {
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+  gap: clamp(36px, 5vw, 80px);
+  max-width: 1240px;
+}
+
+/* Measurement backdrop: a light survey grid, faded toward the theatre. */
+body.signal-system .hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, var(--sig-rule) 1px, transparent 1px),
+    linear-gradient(0deg, var(--sig-rule) 1px, transparent 1px);
+  background-size: 92px 92px;
+  -webkit-mask-image: radial-gradient(115% 85% at 72% 6%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(115% 85% at 72% 6%, #000 0%, transparent 70%);
+}
+
+/* Signal horizon: same silhouette, cleaner light, defined crest. */
+body.signal-system .hero::before {
+  bottom: -146px;
+  height: 316px;
+  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 42%) 0 1.5px, transparent 1.5px),
+    linear-gradient(180deg, #ff7a4f 0%, var(--signal-accent) 44%, #cf300b 100%);
+  box-shadow: 0 -24px 70px rgb(255 61 18 / 24%);
+}
+
+body.signal-system .arc-light {
+  border-top-color: rgb(255 255 255 / 55%);
+  opacity: 0.5;
+}
+
+body.signal-system .arc-light-two {
+  border-top-color: rgb(255 255 255 / 30%);
+}
+
+/* The intro column hangs off a measured rule: signal at the top, hairline down. */
+body.signal-system .hero-intro {
+  padding: 4px 0 4px clamp(26px, 3vw, 44px);
+  border-left: 0;
+}
+
+body.signal-system .hero-intro::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--signal-accent) 0 68px, var(--sig-rule-strong) 68px);
+}
+
+/* Each .hero-line is an overflow:hidden mask for the entrance, so a wrapped
+   line would break the reveal. The measure is sized so the longest line
+   ("AI recommends.") cannot wrap at the largest step of the clamp. */
+body.signal-system .hero-intro h1 {
+  max-width: 560px;
+  font-size: clamp(44px, 5.1vw, 70px);
+  font-weight: 600;
+  line-height: 0.97;
+  letter-spacing: -0.035em;
+}
+
+body.signal-system .hero-lede {
+  max-width: 42ch;
+  margin-top: 22px;
+  color: var(--signal-muted);
+  font-size: clamp(16px, 1.25vw, 18.5px);
+  line-height: 1.55;
+}
+
+body.signal-system .hero-cta-row {
+  gap: 12px 16px;
+  margin-top: 30px;
+}
+
+body.signal-system .hero-cta {
+  min-height: 54px;
+  padding: 0 26px;
+  font-size: 15.5px;
+  font-weight: 650;
+  box-shadow: 0 10px 26px rgb(255 61 18 / 26%);
+  transition:
+    transform 200ms var(--sig-ease),
+    box-shadow 200ms var(--sig-ease);
+}
+
+body.signal-system .hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgb(255 61 18 / 32%);
+}
+
+body.signal-system .hero-start-link {
+  min-height: 54px;
+  border-radius: 10px;
+  border-color: var(--sig-rule-strong);
+  background: var(--signal-surface);
+  color: var(--signal-ink);
+  font-weight: 600;
+}
+
+body.signal-system .hero-start-link:hover {
+  border-color: var(--signal-ink);
+}
+
+/* Inline-flex drops the source whitespace before the arrow; restore the cue. */
+body.signal-system .hero-start-link > span {
+  margin-left: 0.45em;
+}
+
+/* Offer facts as a measured strip — the first hard numbers on the page. */
+body.signal-system .hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 34px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--sig-rule-strong);
+}
+
+body.signal-system .hero-facts > div {
+  margin-right: clamp(16px, 2.2vw, 30px);
+  padding-right: clamp(16px, 2.2vw, 30px);
+  border-right: 1px solid var(--sig-rule);
+}
+
+body.signal-system .hero-facts > div:last-child {
+  margin-right: 0;
+  padding-right: 0;
+  border-right: 0;
+}
+
+body.signal-system .hero-facts dt {
+  font-size: clamp(19px, 1.6vw, 23px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+body.signal-system .hero-facts dd {
+  margin: 7px 0 0;
+  color: var(--signal-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* The facts strip is the fifth intro child; keep it on the existing cadence. */
+body.signal-system .hero-intro > :nth-child(5) {
+  animation-delay: 840ms;
+}
+
+body.signal-system .hero-theater-col {
+  position: relative;
+  z-index: 4;
+  min-width: 0;
+}
+
+body.signal-system .search-theater {
+  border-color: var(--signal-line);
+  border-radius: 16px;
+  background: var(--signal-surface);
+}
+
+body.signal-system .hero .search-theater {
+  box-shadow: 0 34px 80px rgb(11 16 32 / 18%);
+}
+
+body.signal-system :is(.theater-head, .theater-input, .ta-row) {
+  border-color: var(--signal-line);
+}
+
+body.signal-system :is(.ti-model, .ti-mic, .ta-thinking, .ta-pos, .ta-chip-missing, .ti-plus) {
+  color: var(--signal-muted);
+}
+
+body.signal-system .ta-thinking i {
+  background: var(--signal-line);
+}
+
+body.signal-system .ta-row.ta-you {
+  border-color: color-mix(in srgb, var(--signal-accent) 34%, var(--signal-line));
+  background: color-mix(in srgb, var(--signal-accent) 8%, var(--signal-surface));
+}
+
+/* ------------------------------------------------------------------- stage
+   One instrument, read top to bottom: the engines it watches, the measurement
+   it returns, and one prompt opened up. The parts share a single surface, so
+   the page never presents two boxed demonstrations side by side. */
+
+body.signal-system .stage-section {
+  padding-bottom: calc(clamp(72px, 7vw, 104px) + var(--sig-slab));
+}
+
+body.signal-system .proof-head {
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  align-items: end;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--sig-rule);
+}
+
+body.signal-system .proof-head h2 {
+  max-width: 20ch;
+  margin: 0;
+}
+
+body.signal-system .proof-head .evidence-market {
+  max-width: 42ch;
+  margin: 0 0 2px;
+  padding-left: 18px;
+  border-left: 2px solid var(--signal-accent);
+  color: var(--signal-muted);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+body.signal-system .evidence-market a {
+  color: var(--sig-accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.signal-system .stage {
+  position: relative;
+  margin-top: clamp(28px, 3.4vw, 44px);
+  border: 1px solid var(--sig-rule);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--signal-surface);
+  box-shadow: var(--sig-shadow-2);
+}
+
+/* The instrument's header: what it watches. */
+body.signal-system .stage-engines {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px clamp(16px, 2.4vw, 34px);
+  margin: 0;
+  padding: 15px clamp(16px, 2vw, 26px);
+  border-bottom: 1px solid var(--sig-rule);
+  background: color-mix(in srgb, var(--signal-paper) 55%, var(--signal-surface));
+  list-style: none;
+}
+
+body.signal-system .stage-engines .engine-item {
+  color: var(--signal-ink);
+  font-size: 13.5px;
+  font-weight: 600;
+  gap: 9px;
+}
+
+body.signal-system .stage-engines .engine-item img {
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+}
+
+/* The measurement. Inside the stage the console loses its own frame. */
+body.signal-system .stage .hero-console {
+  width: 100%;
+  height: 480px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--signal-surface);
+  box-shadow: none;
+}
+
+body.signal-system :is(.console-frame, .console-main) {
+  border-color: var(--sig-rule);
+}
+
+body.signal-system .console-side {
+  border-color: var(--sig-rule);
+  background: var(--signal-paper);
+}
+
+body.signal-system :is(.console-ws, .cf-chip) {
+  border-color: var(--signal-line);
+  background: var(--signal-surface);
+}
+
+body.signal-system :is(.cs-item, .cc-sub, .cf-chip, .console-nav) {
+  color: var(--signal-muted);
+}
+
+body.signal-system .console-nav .cs-active {
+  background: color-mix(in srgb, var(--signal-accent) 9%, var(--signal-surface));
+  color: var(--sig-accent-ink);
+}
+
+body.signal-system .console-card {
+  border-radius: 12px;
+  border-color: var(--signal-line);
+  background-color: var(--signal-surface);
+}
+
+body.signal-system .cf-chip {
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+}
+
+body.signal-system .cf-sample {
+  margin-left: auto;
+  border-color: color-mix(in srgb, var(--signal-accent) 38%, var(--signal-line));
+  background: color-mix(in srgb, var(--signal-accent) 8%, var(--signal-surface));
+  color: var(--sig-accent-ink);
+}
+
+body.signal-system :is(.cc-big, .rk-vis-you) {
+  color: var(--signal-ink);
+}
+
+body.signal-system .rk-row {
+  border-color: var(--signal-line);
+}
+
+body.signal-system .cc-grid-lines line {
+  stroke: var(--signal-line);
+}
+
+body.signal-system .dash-line {
+  stroke: var(--signal-accent);
+}
+
+body.signal-system .rk-you {
+  border-color: color-mix(in srgb, var(--signal-accent) 34%, var(--signal-line));
+  background: color-mix(in srgb, var(--signal-accent) 8%, var(--signal-surface));
+}
+
+body.signal-system .redact,
+body.signal-system .rk-logo:not(.rk-logo-you) {
+  background: var(--signal-ink);
+}
+
+body.signal-system .redact-desc {
+  background: var(--signal-line);
+}
+
+body.signal-system :is(.console-ws-logo, .rk-logo-you) {
+  background: var(--signal-accent);
+  color: var(--signal-ink);
+}
+
+/* One prompt, opened up. Same surface, no second card. */
+body.signal-system .answer-compare {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: clamp(10px, 1.6vw, 24px);
+  margin: 0;
+  padding: clamp(16px, 1.8vw, 24px) clamp(14px, 1.8vw, 22px) clamp(20px, 2.2vw, 28px);
+  border-top: 1px solid var(--sig-rule);
+}
+
+body.signal-system .ac-col {
+  min-width: 0;
+}
+
+body.signal-system .ac-card {
+  height: auto;
+  padding: 12px clamp(10px, 1.2vw, 16px) 14px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  box-shadow: none;
+}
+
+body.signal-system .ac-card-after {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--signal-accent) 7%, transparent),
+    transparent 68%
+  );
+}
+
+body.signal-system .ac-head {
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+body.signal-system .ac-app {
+  color: var(--signal-muted);
+}
+
+body.signal-system .ac-state {
+  margin-left: auto;
+  color: var(--signal-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+body.signal-system .ac-state-after {
+  color: var(--sig-accent-ink);
+}
+
+body.signal-system .ac-question {
+  background: var(--signal-paper);
+  color: var(--signal-ink);
+}
+
+body.signal-system :is(.ac-line, .ac-desc) {
+  color: var(--signal-muted);
+}
+
+body.signal-system .ac-fav:not(.ac-fav-shifter) {
+  background: var(--signal-line);
+  color: var(--signal-muted);
+}
+
+body.signal-system .ac-fav-shifter {
+  background: var(--signal-ink);
+  color: var(--signal-surface);
+}
+
+body.signal-system .ac-row-shifter {
+  border-color: color-mix(in srgb, var(--signal-accent) 34%, var(--signal-line));
+  background: color-mix(in srgb, var(--signal-accent) 8%, var(--signal-surface));
+}
+
+body.signal-system .ac-verdict-after {
+  border-color: color-mix(in srgb, var(--signal-accent) 42%, var(--signal-line));
+  background: color-mix(in srgb, var(--signal-accent) 10%, var(--signal-surface));
+  color: var(--signal-ink);
+}
+
+/* The seam between the two readings: a hairline the arrow sits on. */
+body.signal-system .ac-bridge {
+  position: relative;
+  align-self: stretch;
+  padding: 0;
+}
+
+body.signal-system .ac-bridge::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 50%;
+  width: 1px;
+  background: var(--sig-rule);
+}
+
+body.signal-system .ac-bridge-arrow {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-color: color-mix(in srgb, var(--signal-accent) 34%, var(--signal-line));
+  background: var(--signal-surface);
+  color: var(--sig-accent-ink);
+  font-size: 15px;
+}
+
+/* Readout under the instrument. */
+body.signal-system .proof-bottom {
+  margin-top: clamp(26px, 3vw, 38px);
+  padding-top: 24px;
+  border-top: 1px solid var(--sig-rule-strong);
+}
+
+/* Own the spacing so the divider rules sit centred between figures rather than
+   at the start of the flex gap. */
+body.signal-system .evidence-stats {
+  gap: 0;
+  margin: 0;
+}
+
+body.signal-system .evidence-stats > div {
+  margin-right: clamp(20px, 3vw, 40px);
+  padding-right: clamp(20px, 3vw, 40px);
+  border-right: 1px solid var(--sig-rule);
+}
+
+body.signal-system .evidence-stats > div:last-child {
+  margin-right: 0;
+  padding-right: 0;
+  border-right: 0;
+}
+
+body.signal-system .evidence-stats strong {
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+body.signal-system .proof-note-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0;
+  font-weight: 600;
+}
+
+body.signal-system .proof-note-link span {
+  transition: transform 220ms var(--sig-ease);
+}
+
+body.signal-system .proof-note-link:hover span {
+  transform: translateX(4px);
+}
+
+body.signal-system .ac-caption {
+  margin: 18px 0 0;
+  color: var(--signal-muted);
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+/* ------------------------------------------------------- the ink slab
+   Rises out of the paper and carries the whole commercial argument: how the
+   work runs, what it costs, and the objections worth answering before anyone
+   fills in the form. */
+
+body.signal-system .hyb-offer {
+  position: relative;
+  z-index: 1;
+  margin-top: calc(var(--sig-slab) * -1);
+  padding:
+    calc(clamp(56px, 5.6vw, 82px) + var(--sig-slab))
+    0
+    calc(clamp(76px, 8vw, 118px) + var(--sig-slab));
+  border-radius: var(--sig-slab) var(--sig-slab) 0 0;
+  overflow: hidden;
+  background: var(--signal-ink);
+  color: var(--signal-surface);
+}
+
+/* Soft accent field, top right: depth without a hard-edged shape that has to
+   be aligned to anything. */
+body.signal-system .hyb-offer::before {
+  content: "";
+  position: absolute;
+  top: -34%;
+  right: -12%;
+  width: min(760px, 70%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 61 18 / 24%), transparent 60%);
+  pointer-events: none;
+}
+
+body.signal-system .hyb-offer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgb(255 255 255 / 4%) 1px, transparent 1px),
+    linear-gradient(0deg, rgb(255 255 255 / 4%) 1px, transparent 1px);
+  background-size: 92px 92px;
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent 62%);
+  mask-image: linear-gradient(180deg, #000, transparent 62%);
+}
+
+body.signal-system .hyb-offer > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Test, change, re-test — three inline actions on one rail, not three cards. */
+body.signal-system .cadence {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 auto clamp(52px, 6vw, 84px);
+  padding: 0;
+  border-top: 1px solid var(--sig-on-ink-line);
+  border-bottom: 1px solid var(--sig-on-ink-line);
+  list-style: none;
+}
+
+body.signal-system .cadence li {
+  padding: 20px clamp(18px, 2.2vw, 34px);
+  border-left: 1px solid var(--sig-on-ink-line);
+  color: var(--sig-on-ink);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+body.signal-system .cadence li:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+body.signal-system .cadence li:last-child {
+  padding-right: 0;
+}
+
+body.signal-system .cadence b {
+  color: var(--signal-accent);
+  font-weight: 600;
+}
+
+/* Founder offer */
+
+body.signal-system .hyb-offer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.66fr) minmax(0, 1.34fr);
+  gap: clamp(32px, 5vw, 76px);
+  align-items: center;
+}
+
+body.signal-system .hyb-portrait {
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 14px;
+  background: #1b1f2c;
+}
+
+body.signal-system .hyb-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 34%;
+  filter: grayscale(1);
+}
+
+body.signal-system .hyb-portrait-caption {
+  margin: 14px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--sig-on-ink-line);
+  color: rgb(255 255 255 / 66%);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+body.signal-system .hyb-portrait-caption strong {
+  color: var(--signal-surface);
+}
+
+body.signal-system .hyb-portrait-caption a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+body.signal-system .hyb-offer h2 {
+  max-width: 20ch;
+  margin: 0;
+  color: var(--signal-surface);
+  font-size: clamp(36px, 4.4vw, 62px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+body.signal-system .hyb-offer h2 .offer-l {
+  display: block;
+}
+
+body.signal-system .hyb-offer-lede {
+  margin: 22px 0 26px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgb(255 255 255 / 16%);
+  color: rgb(255 255 255 / 68%);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.9;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+body.signal-system .hyb-offer-lede .offer-price {
+  color: var(--signal-surface);
+  font-family: inherit;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  text-transform: none;
+}
+
+body.signal-system .hyb-offer-list {
+  display: grid;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+body.signal-system .hyb-offer-list li {
+  position: relative;
+  padding: 14px 0 14px 30px;
+  border-top: 1px solid rgb(255 255 255 / 18%);
+  font-size: 15.5px;
+  line-height: 1.45;
+}
+
+body.signal-system .hyb-offer-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 21px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--signal-accent);
+}
+
+body.signal-system .hyb-offer-list li:last-child {
+  border-bottom: 1px solid rgb(255 255 255 / 18%);
+}
+
+body.signal-system .hyb-exclusive {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 28px;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--signal-accent) 54%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--signal-accent) 8%, transparent);
+  color: var(--signal-surface);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+body.signal-system .hyb-exclusive::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--signal-accent);
+}
+
+body.signal-system .hyb-offer-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Disclosures: everything still worth asking, folded away until it is. */
+body.signal-system .disclosures {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* start, not stretch: an open row must not drag the closed row beside it
+     away from its own rule. */
+  align-items: start;
+  gap: 0 clamp(32px, 5vw, 76px);
+  margin-top: clamp(52px, 6vw, 86px);
+  padding-top: clamp(24px, 3vw, 34px);
+  border-top: 1px solid var(--sig-on-ink-line);
+}
+
+body.signal-system .disc {
+  border-bottom: 1px solid rgb(255 255 255 / 11%);
+}
+
+body.signal-system .disc summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 15px 0;
+  color: var(--signal-surface);
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  list-style: none;
+  cursor: pointer;
+}
+
+body.signal-system .disc summary::-webkit-details-marker {
+  display: none;
+}
+
+body.signal-system .disc summary::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  margin-left: auto;
+  border-right: 1.5px solid rgb(255 255 255 / 52%);
+  border-bottom: 1.5px solid rgb(255 255 255 / 52%);
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 240ms var(--sig-ease);
+}
+
+body.signal-system .disc[open] summary::after {
+  transform: translateY(2px) rotate(-135deg);
+}
+
+body.signal-system .disc summary:hover {
+  color: color-mix(in srgb, var(--signal-accent) 40%, var(--signal-surface));
+}
+
+body.signal-system .disc p {
+  max-width: 56ch;
+  margin: 0 0 20px;
+  color: rgb(255 255 255 / 66%);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* ---------------------------------------------------- the snapshot request
+   The last slab: signal orange rising out of the ink, with the request panel
+   as a precise white instrument on top of it. */
+
+body.signal-system .hyb-final {
+  position: relative;
+  z-index: 2;
+  margin-top: calc(var(--sig-slab) * -1);
+  padding: calc(clamp(72px, 7.5vw, 112px) + var(--sig-slab)) 0 clamp(72px, 7.5vw, 112px);
+  border-radius: var(--sig-slab) var(--sig-slab) 0 0;
+  background: var(--signal-accent);
+  color: var(--signal-ink);
+  text-align: left;
+}
+
+body.signal-system .final-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+body.signal-system .final-copy {
+  min-width: 0;
+}
+
+body.signal-system .hyb-final h2 {
+  max-width: 12ch;
+  margin: 0;
+  color: var(--signal-ink);
+  font-size: clamp(42px, 5.4vw, 78px);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+/* Signal orange is a 5.37:1 background for midnight ink, so every step of
+   tinting eats the AA margin fast. Measured against #FF3D12: 76% ink is
+   4.13:1 and 55% is ~3.1:1 — both fail for body text. 92% holds. */
+body.signal-system .hyb-final .snap-line {
+  max-width: 40ch;
+  margin: 22px 0 24px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--sig-on-accent-line);
+  color: rgb(11 16 32 / 92%);
+  font-size: clamp(15px, 1.2vw, 17px);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+body.signal-system .snap-price {
+  white-space: nowrap;
+  color: var(--signal-ink);
+  font-weight: 600;
+}
+
+body.signal-system .snap-price s {
+  margin-right: 3px;
+  opacity: 0.5;
+}
+
+body.signal-system .hyb-final .final-assure {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--signal-ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* The request panel is white on the signal field, so its actions invert:
+   midnight ink reads as the decisive control there, not another orange pill. */
+body.signal-system .hyb-final .hyb-cta {
+  background: var(--signal-ink);
+  color: var(--signal-surface) !important;
+}
+
+body.signal-system .hyb-final .hyb-cta:hover {
+  background: #161d33;
+}
+
+body.signal-system .final-panel {
+  position: relative;
+  min-width: 0;
+  padding: clamp(24px, 2.6vw, 34px);
+  border-radius: 18px;
+  background: var(--signal-surface);
+  box-shadow: 0 2px 4px rgb(11 16 32 / 8%), 0 34px 70px rgb(11 16 32 / 22%);
+}
+
+body.signal-system .snap-form {
+  max-width: none;
+  margin: 0;
+}
+
+/* Belt-and-braces for the honeypot: the panel is a positioned ancestor, so
+   hide by clipping rather than by a large negative offset. */
+body.signal-system .snap-hp {
+  position: absolute;
+  left: auto;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  opacity: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* flex-direction is set explicitly: the legacy phone rule switches this row to
+   `column`, which would turn `align-items: flex-end` into a right-aligned
+   stack. The full-width button below wraps to its own line instead. */
+body.signal-system .snap-step1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+body.signal-system .snap-field {
+  flex: 1 1 240px;
+  min-width: 0;
+  margin: 0;
+}
+
+body.signal-system .snap-label {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--signal-ink);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+body.signal-system .snap-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--sig-rule-strong);
+  border-radius: 10px;
+  background: var(--signal-surface);
+  color: var(--signal-ink);
+  font: inherit;
+  font-size: 15px;
+  transition:
+    border-color 180ms var(--sig-ease),
+    box-shadow 180ms var(--sig-ease);
+}
+
+body.signal-system textarea.snap-input {
+  resize: vertical;
+}
+
+body.signal-system .snap-input::placeholder {
+  color: rgb(11 16 32 / 54%);
+}
+
+body.signal-system .snap-input:hover {
+  border-color: rgb(11 16 32 / 32%);
+}
+
+body.signal-system .snap-input:focus-visible {
+  outline: 3px solid var(--signal-ink);
+  outline-offset: 1px;
+  border-color: var(--signal-ink);
+}
+
+/* Field-level validity, surfaced only after the visitor has actually left the
+   field — it complements the alert block rather than pre-empting it. */
+body.signal-system .snap-input:user-invalid {
+  border-color: var(--sig-alert);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sig-alert) 14%, transparent);
+}
+
+body.signal-system .snap-go {
+  flex: 0 0 auto;
+}
+
+/* Step one earns a reassurance line: it explains what "your website" is used
+   for before anyone types, and retires once the value is confirmed. */
+body.signal-system .hyb-final .snap-hint {
+  flex: 1 0 100%;
+  margin: 2px 0 0;
+  color: var(--signal-muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+body.signal-system .snap-form:has([data-snap-step2]:not([hidden])) .snap-hint {
+  display: none;
+}
+
+body.signal-system .snap-step2 {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--sig-rule);
+  text-align: left;
+}
+
+body.signal-system .snap-step2:not([hidden]) {
+  animation: snap-in 0.25s var(--sig-ease);
+}
+
+@keyframes snap-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+body.signal-system .hyb-final .snap-ask {
+  margin: 0;
+  color: var(--signal-ink);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+body.signal-system .snap-step2 .snap-field {
+  flex: none;
+}
+
+body.signal-system .snap-step2 .snap-submit {
+  width: 100%;
+}
+
+body.signal-system .hyb-final .snap-helper {
+  margin: -2px 0 0;
+  color: var(--signal-muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+body.signal-system .snap-submit {
+  border: 0;
+  cursor: pointer;
+}
+
+body.signal-system .snap-submit[disabled] {
+  opacity: 0.62;
+  cursor: wait;
+  transform: none;
+}
+
+/* Validation: an unmistakable alert block directly under the fields. */
+body.signal-system .hyb-final .snap-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 11px 13px;
+  border: 1px solid color-mix(in srgb, var(--sig-alert) 42%, transparent);
+  border-left-width: 3px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--sig-alert) 7%, var(--signal-surface));
+  color: var(--sig-alert);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: left;
+}
+
+body.signal-system .hyb-final .snap-status::before {
+  content: "!";
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--sig-alert);
+  color: var(--signal-surface);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+body.signal-system .hyb-final .snap-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--sig-rule);
+  color: var(--signal-muted);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+body.signal-system .hyb-final .snap-note::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 18px;
+  height: 1px;
+  background: var(--signal-accent);
+}
+
+/* Post-capture receipt and optional context. The .hyb-final descendant is
+   needed to outrank the tonal heading colour above. */
+body.signal-system .hyb-final .snap-receipt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  color: var(--sig-accent-ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+body.signal-system .hyb-final .snap-receipt::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--signal-accent);
+  color: var(--signal-ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+body.signal-system .snap-done h3 {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+body.signal-system .hyb-final .snap-done > p {
+  max-width: 46ch;
+  margin: 0 0 18px;
+  color: var(--signal-muted);
+  font-size: 14.5px;
+  line-height: 1.55;
+  text-align: left;
+}
+
+body.signal-system .snap-enrichment {
+  display: grid;
+  max-width: none;
+  gap: 14px;
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--sig-rule);
+}
+
+body.signal-system .hyb-final .snap-context-help {
+  margin: 0;
+  color: var(--signal-muted);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+body.signal-system .snap-context-field {
+  display: grid;
+  gap: 6px;
+}
+
+body.signal-system .snap-context-field label {
+  color: var(--signal-ink);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+body.signal-system .snap-context-field label span {
+  color: var(--signal-muted);
+  font-weight: 400;
+}
+
+body.signal-system .snap-context-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin-top: 4px;
+}
+
+/* Skip is a real control, not a run of text: give it a 44px target and the
+   underline that says it can be pressed. */
+body.signal-system .snap-skip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 2px;
+  border: 0;
+  background: transparent;
+  color: var(--signal-muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 180ms var(--sig-ease);
+}
+
+body.signal-system .snap-skip:hover {
+  color: var(--signal-ink);
+}
+
+body.signal-system .hyb-final .snap-context-status {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--sig-alert);
+  background: color-mix(in srgb, var(--sig-alert) 7%, var(--signal-surface));
+  color: var(--sig-alert) !important;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: left;
+}
+
+body.signal-system .hyb-final .snap-final {
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--sig-rule-strong);
+  border-left: 3px solid var(--signal-accent);
+  border-radius: 8px;
+  background: var(--signal-paper);
+  color: var(--signal-ink);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* ------------------------------------------------------------------ footer */
+
+body.signal-system .site-footer {
+  padding: clamp(40px, 4vw, 56px) 28px clamp(28px, 3vw, 40px);
+  border-top: 1px solid var(--sig-rule);
+  background: var(--signal-surface);
+}
+
+body.signal-system .site-footer-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+  gap: 32px clamp(32px, 6vw, 90px);
+  align-items: start;
+}
+
+body.signal-system .footer-identity {
+  min-width: 0;
+}
+
+body.signal-system .site-footer p {
+  max-width: 34ch;
+  margin: 14px 0 0;
+  color: var(--signal-muted);
+  font-size: 14.5px;
+}
+
+body.signal-system .footer-standing {
+  margin-top: 12px;
+  color: var(--signal-muted);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+body.signal-system :is(.footer-nav, .footer-nav a, .footer-copyright) {
+  color: var(--signal-muted);
+}
+
+body.signal-system .footer-nav {
+  justify-content: flex-start;
+  gap: 12px 26px;
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+body.signal-system .footer-nav a:hover {
+  color: var(--sig-accent-ink);
+}
+
+body.signal-system .footer-base {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  padding-top: 20px;
+  border-top: 1px solid var(--sig-rule);
+}
+
+body.signal-system .footer-legal-nav {
+  max-width: none;
+  gap: 8px 18px;
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+body.signal-system .site-footer .footer-copyright {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+/* -------------------------------------------------------------- responsive */
+
+@media (min-width: 1400px) {
+  /* The instrument is allowed to sit wider than the reading measure. The
+     breakpoint is set so the bleed always fits inside the section gutter:
+     .section-inner is 1240px and .section keeps 28px of padding, so 1400px is
+     the first width with more than 36px of slack on each side. */
+  body.signal-system .stage {
+    margin-inline: -36px;
+  }
+}
+
+@media (max-width: 1120px) {
+  body.signal-system .stage .hero-console {
+    height: 460px;
+  }
+}
+
+@media (max-width: 1000px) {
+  body.signal-system .hero {
+    padding: 56px 28px 130px;
+  }
+
+  body.signal-system .hero-grid {
+    grid-template-columns: minmax(0, 640px);
+  }
+
+  body.signal-system .hero-intro h1 {
+    max-width: none;
+  }
+
+  body.signal-system .hero-theater-col {
+    width: 100%;
+  }
+
+  /* Stacked, the hero is shorter: drop the horizon so its crest (316px tall,
+     so `height + bottom` above the hero's edge) still clears the content box. */
+  body.signal-system .hero::before {
+    bottom: -216px;
+  }
+
+  body.signal-system .stage .hero-console {
+    height: 440px;
+  }
+
+  /* Below this the six engines can wrap, and a spread last row reads as a
+     mistake — pack them from the left instead. */
+  body.signal-system .stage-engines {
+    justify-content: flex-start;
+    gap: 12px clamp(14px, 2.4vw, 26px);
+  }
+}
+
+@media (max-width: 900px) {
+  body.signal-system :is(.proof-head, .final-grid, .hyb-offer-grid) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.signal-system .proof-head {
+    gap: 16px;
+    align-items: start;
+  }
+
+  body.signal-system .proof-head h2 {
+    max-width: none;
+  }
+
+  body.signal-system .cadence {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.signal-system .cadence li {
+    padding: 16px 0;
+    border-left: 0;
+    border-top: 1px solid var(--sig-on-ink-line);
+  }
+
+  body.signal-system .cadence li:first-child {
+    border-top: 0;
+  }
+
+  body.signal-system .cadence li:last-child {
+    padding-right: 0;
+  }
+
+  body.signal-system .hyb-offer-grid {
+    gap: 42px;
+  }
+
+  body.signal-system .hyb-offer-col {
+    order: 1;
+  }
+
+  body.signal-system .hyb-portrait-col {
+    order: 2;
+  }
+
+  body.signal-system .hyb-portrait {
+    max-height: 520px;
+  }
+
+  /* Stacked, the answer pair reads top to bottom: the seam turns with it. */
+  body.signal-system .answer-compare {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.signal-system .ac-bridge {
+    align-self: auto;
+    padding: 4px 0;
+  }
+
+  body.signal-system .ac-bridge::before {
+    top: 50%;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 1px;
+  }
+
+  body.signal-system .ac-bridge-arrow {
+    transform: rotate(90deg);
+  }
+
+  body.signal-system .disclosures {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* styles.css narrows .section to 24px gutters here; the slabs follow. */
+  body.signal-system .hyb-wrap {
+    width: min(1240px, calc(100% - 48px));
+  }
+
+  body.signal-system .final-panel {
+    padding: 22px 20px;
+  }
+
+  body.signal-system .site-footer-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  body.signal-system .stage .hero-console {
+    height: 470px;
+  }
+}
+
+@media (max-width: 720px) {
+  body.signal-system .hero {
+    padding: 40px 20px 124px;
+  }
+
+  body.signal-system .hero-intro {
+    padding-left: 20px;
+  }
+
+  body.signal-system .hero-intro h1 {
+    font-size: clamp(34px, 10vw, 52px);
+  }
+
+  body.signal-system .hero-cta,
+  body.signal-system .hero-start-link {
+    width: 100%;
+    max-width: none;
+  }
+
+  /* The label can wrap on a phone, so the pill needs vertical padding again. */
+  body.signal-system .hero-cta {
+    padding: 14px 22px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  body.signal-system .hero-facts > div {
+    margin-right: 14px;
+    padding-right: 14px;
+  }
+
+  body.signal-system .stage {
+    border-radius: 16px;
+  }
+
+  body.signal-system .stage-engines {
+    justify-content: flex-start;
+    gap: 12px 18px;
+    padding: 14px 16px;
+  }
+
+  body.signal-system .stage-engines .engine-item {
+    font-size: 12.5px;
+    gap: 7px;
+  }
+
+  body.signal-system .stage-engines .engine-item img {
+    width: 16px;
+    height: 16px;
+  }
+
+  body.signal-system .stage .hero-console {
+    height: 400px;
+  }
+
+  body.signal-system .evidence-stats > div {
+    padding-right: 18px;
+  }
+
+  body.signal-system .hyb-offer h2 .offer-l {
+    display: inline;
+  }
+
+  body.signal-system .hyb-offer-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  body.signal-system :is(.hyb-cta, .hyb-cta-secondary) {
+    width: 100%;
+  }
+
+  body.signal-system .disc summary {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Matches the 18px gutter styles.css gives .section at this width. */
+  body.signal-system .hyb-wrap {
+    width: min(1240px, calc(100% - 36px));
+  }
+}
+
+@media (max-width: 620px) {
+  body.signal-system .snap-go {
+    width: 100%;
+  }
+
+  body.signal-system .snap-context-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  body.signal-system .snap-context-actions .hyb-cta,
+  body.signal-system .snap-skip {
+    width: 100%;
+  }
+}
+
+/* Keeps "Get your free AI Visibility Snapshot" on one line down to ~360px —
+   the same trim styles.css applies, restated here because this layer's
+   .hero-cta padding and size would otherwise win. */
+@media (max-width: 480px) {
+  body.signal-system .hero-cta {
+    padding: 13px 16px;
+    font-size: 14.5px;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+
+  /* Three figures, one line: the labels are trimmed rather than allowed to
+     wrap a lone third column onto its own row. */
+  body.signal-system .hero-facts > div {
+    margin-right: 10px;
+    padding-right: 10px;
+  }
+
+  body.signal-system .hero-facts dd {
+    font-size: 9px;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* ----------------------------------------------------------------- motion
+   The stage is one object, so it takes one gentle tilt rather than three, and
+   its parts arrive by opacity alone — nothing slides inside a frame that is
+   already on screen. */
+
+body.signal-system .stage.is-tilting {
+  transform:
+    perspective(1600px)
+    rotateX(calc(var(--tilt-x, 0deg) * 0.4))
+    rotateY(calc(var(--tilt-y, 0deg) * 0.4));
+}
+
+body.signal-system .stage .reveal-item {
+  transform: none;
+  transition: opacity 700ms var(--sig-ease);
+}
+
+body.signal-system .stage .answer-compare.reveal-item {
+  transition-delay: 120ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.signal-system .eyebrow-live {
+    animation: none;
+  }
+
+  body.signal-system .header-rail::before {
+    animation: none;
+    transform: scaleX(0);
+  }
+
+  body.signal-system .snap-step2:not([hidden]) {
+    animation: none;
+  }
+
+  /* This layer outranks the shared .reveal-item reset, so it opts out itself. */
+  body.signal-system .stage .reveal-item {
+    transition: none;
+  }
+
+  body.signal-system :is(
+    .hero-cta,
+    .hyb-cta,
+    .hyb-cta-secondary,
+    .snap-input,
+    .snap-skip,
+    .proof-note-link span
+  ) {
+    transition: none;
+  }
+
+  /* Pseudo-elements are not valid inside :is(), so these stay separate. */
+  body.signal-system .site-nav a::after,
+  body.signal-system .disc summary::after {
+    transition: none;
+  }
+
+  body.signal-system :is(.hero-cta, .hyb-cta, .hyb-cta-secondary):hover {
+    transform: none;
+  }
+
+  body.signal-system .proof-note-link:hover span {
+    transform: none;
+  }
+
+  /* The pointer-reactive layers in script.js are gated on a fine pointer, not
+     on this query, so they are stopped here. */
+  body.signal-system .stage.is-tilting,
+  body.signal-system .search-theater.is-tilting {
+    transform: none;
+  }
+
+  body.signal-system .tilt-sheen {
+    display: none;
+  }
+
+  body.signal-system .hero .search-theater,
+  body.signal-system .hero-stage {
+    translate: none;
+    transition: none;
+  }
+
+  /* The headline mask and the accent dot ride their own animations, outside
+     the `.hero-intro > *` rule styles.css already neutralises. */
+  body.signal-system :is(.hero-line-inner, .accent-dot) {
+    animation: none;
+  }
+
+  body.signal-system .evidence-stats strong.stat-pulsed {
+    animation: none;
+  }
+
+  /* The theatre and the answer pair are driven by classes the controller
+     toggles, so their motion lives in CSS the cascade would otherwise win.
+     Content still updates; it just stops moving, pulsing and glowing. */
+  body.signal-system :is(.search-theater, .answer-compare),
+  body.signal-system :is(.search-theater, .answer-compare) * {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" fill="none">
+  <defs>
+    <filter id="paper" x="-40%" y="-40%" width="180%" height="200%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#65452f" flood-opacity=".09"/>
+      <feDropShadow dx="0" dy="18" stdDeviation="13" flood-color="#65452f" flood-opacity=".13"/>
+    </filter>
+  </defs>
+  <path fill="#f5dfce" d="M0 0h1200v750H0z"/>
+  <ellipse cx="608" cy="581" rx="329" ry="24" fill="#cdb39c" opacity=".3"/>
+  <g filter="url(#paper)" transform="rotate(-29 606 541)">
+    <rect x="475" y="148" width="263" height="421" rx="10" fill="#eee9db" stroke="#d5c8b6"/>
+    <circle cx="606" cy="270" r="64" fill="#d6d9ca"/>
+  </g>
+  <g filter="url(#paper)" transform="rotate(27 606 541)">
+    <rect x="475" y="148" width="263" height="421" rx="10" fill="#292b28"/>
+    <path d="M545 230h122v122H545z" fill="#b9bdac" transform="rotate(18 606 291)"/>
+  </g>
+  <g filter="url(#paper)" transform="rotate(-9 606 541)">
+    <rect x="475" y="148" width="263" height="421" rx="10" fill="#fffcf3" stroke="#ded3c2"/>
+    <path d="m606 210 78 134H528Z" fill="#d9b296"/>
+  </g>
+  <g filter="url(#paper)" transform="rotate(10 606 541)">
+    <rect x="475" y="148" width="263" height="421" rx="10" fill="#faf5e9" stroke="#d9cdbc"/>
+    <path d="M657 148h48v83l-24-16-24 16Z" fill="#be4827"/>
+    <rect x="546" y="242" width="120" height="120" rx="60" fill="#edc5a8"/>
+    <rect x="567" y="263" width="78" height="78" rx="39" fill="#be4827"/>
+    <circle cx="606" cy="510" r="14" fill="#d2c5b1"/>
+    <circle cx="606" cy="507" r="11" fill="#f5eee0" stroke="#b8ad99" stroke-width="2"/>
+  </g>
+  <path d="M581 495c-26-35-65-29-65 2 0 23 30 44 58 33" stroke="#8f8d7d" stroke-width="8" stroke-linecap="round"/>
+  <path d="M580 493c-26-35-65-29-65 2 0 23 30 44 58 33" stroke="#ddd8ca" stroke-width="4" stroke-linecap="round"/>
+</svg>
