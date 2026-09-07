@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "node scripts/verify-site.mjs",
-    "build": "npm test"
+    "build": "node scripts/build-site.mjs"
   },
   "devDependencies": {
     "parse5": "7.3.0",

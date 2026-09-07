@@ -11,6 +11,8 @@ npm test
 
 The build runs the same checks: page links, CSS/JavaScript/image/font dependencies, JSON-LD, sitemap targets and a local GET-only Snapshot endpoint check. No test email is sent.
 
+`npm run build` then creates an explicit `public/` artifact with byte-identical website files. Server code, package files, internal documents and build scripts are excluded from static serving; Vercel compiles the root `api/` directory separately. `public/` is generated, ignored by Git, and only replaced when it carries this build's ownership marker.
+
 `scripts/design-baseline.json` protects the working production design and runtime recovered on 8 September 2026: 70 assets and seven homepage sections. An intentional redesign requires separate approval and an explicitly reviewed baseline update. AEO edits do not authorize changing this baseline.
 
 ## Publishing

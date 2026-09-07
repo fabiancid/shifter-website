@@ -1,5 +1,6 @@
 # Local account state, recovery notes and private design studies are not site output.
 .git/
+public/
 .github/
 .vercel/
 .env
