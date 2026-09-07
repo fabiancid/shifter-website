@@ -1,0 +1,152 @@
+/* Website + world. A cinematic opening, an open work chapter,
+   then a quiet invitation. All content remains available without motion. */
+body.signal-system :is(.beyond-intro, .beyond-work, .beyond-snapshot) {
+  --beyond-ink: #232823;
+  --beyond-orange: #ce4824;
+  font-family: "Geist", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  color: var(--beyond-ink);
+  scroll-margin-top: 100px;
+}
+.beyond-wrap { width: min(1180px, calc(100% - 80px)); margin-inline: auto; }
+body.signal-system .beyond-intro { padding: 110px 0 0; background: #faf9f5; overflow: clip; }
+.beyond-heading { position: relative; z-index: 1; display: grid; grid-template-columns: 1.45fr .65fr; align-items: end; gap: 60px; padding-bottom: 18px; }
+body.signal-system .beyond-heading h2 {
+  margin: 0; max-width: none; color: var(--beyond-ink); font-size: clamp(50px, 6.25vw, 84px);
+  line-height: 1.035; font-weight: 400; letter-spacing: -.065em; text-wrap: initial;
+}
+body.signal-system :is(.beyond-heading, .beyond-work, .beyond-snapshot) em {
+  font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.055em;
+}
+.beyond-heading em { color: var(--beyond-orange); }
+.beyond-word { display: inline-block; }
+.beyond-intro-note { padding-bottom: 6px; }
+.beyond-tiny-orbit { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-bottom: 24px; border: 1px solid #ce482470; border-radius: 50%; color: var(--beyond-orange); font-size: 29px; }
+.beyond-intro-note p { margin: 0 0 22px; color: #555a53; font-size: 18px; line-height: 1.65; letter-spacing: -.025em; }
+body.signal-system .beyond-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 35px; min-height: 44px; padding-block: 8px; border-bottom: 1px solid #b9bdb3; color: #232823; font-size: 16px; text-decoration: none; line-height: 1.5; }
+.beyond-link span { font-size: 22px; transition: transform .25s ease; }
+.beyond-link:hover span { transform: translate(3px, -2px); }
+body.signal-system :is(.beyond-intro, .beyond-work, .beyond-snapshot) :focus-visible { outline: 3px solid currentColor; outline-offset: 6px; }
+.beyond-world { margin: 0; }
+.beyond-image-window { position: relative; margin: 36px min(-40px, calc((1180px - 100vw) / 2)) 0; aspect-ratio: 1280 / 540; isolation: isolate; pointer-events: none; }
+.position-art { display: block; width: 100%; height: 100%; overflow: visible; }
+.position-camera { transform-origin: 640px 270px; }
+.position-disc { transform-origin: 654px 351px; }
+.position-plane, .position-disc, .position-camera { transform: none; }
+.beyond-world-labels { display: grid; grid-template-columns: 1fr 1fr 1fr; padding-top: 25px; font-size: 17px; line-height: 1.5; letter-spacing: -.025em; }
+.beyond-world-labels span { display: flex; align-items: center; gap: 12px; }
+.beyond-world-labels span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #df542d; }
+.beyond-world-labels span:nth-child(2) { justify-content: center; }
+.beyond-world-labels span:last-child { justify-content: end; }
+.beyond-signoff { margin: 58px 0 0; padding: 28px 0; border-top: 1px solid #ddded5; color: #323831; font-size: 16px; line-height: 1.6; letter-spacing: -.02em; }
+.beyond-signoff span { color: #62665f; margin-left: 10px; }
+
+/* A charcoal chapter. The orange thread follows real work, not a slide counter. */
+body.signal-system .beyond-work { position: relative; padding: 110px 0 115px; background: #242924; color: #faf9f4; }
+.beyond-work-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(56px, 9vw, 132px); align-items: start; }
+.beyond-work-heading { position: sticky; top: 140px; }
+.beyond-eyebrow { margin: 0 0 28px; font-size: 16px; line-height: 1.5; font-weight: 400; letter-spacing: -.01em; text-transform: none; }
+.beyond-work .beyond-eyebrow { color: #c8ccc2; }
+body.signal-system .beyond-work h2 { margin: 0; color: #faf9f4; font-size: clamp(48px, 5.1vw, 70px); line-height: 1.04; letter-spacing: -.055em; font-weight: 400; max-width: none; text-wrap: initial; }
+.beyond-work h2 em { color: #ff8a60; }
+.beyond-spark { display: block; margin-top: 48px; width: 94px; height: 94px; color: #ff7342; }
+.beyond-work-flow { min-width: 0; }
+.beyond-work-step { position: relative; padding: 0 0 66px 42px; border-left: 1px solid #565e50; scroll-margin-top: 140px; }
+.beyond-work-step:last-child { padding-bottom: 0; border-color: transparent; }
+.beyond-work-step::before { content: ""; position: absolute; top: 8px; left: -1px; width: 1px; height: 100%; background: #ff8157; transform-origin: top; }
+.beyond-work-step:last-child::before { display: none; }
+.beyond-step-pin { position: absolute; left: -6px; top: 6px; width: 11px; height: 11px; border: 2px solid #ff8157; border-radius: 50%; background: #242924; }
+.beyond-step-type { margin: 0 0 18px; color: #ffab8e; font-size: 16px; line-height: 1.5; letter-spacing: -.015em; }
+body.signal-system .beyond-work-step h3 { margin: 0; color: #faf9f4; font-size: clamp(30px, 3.2vw, 43px); line-height: 1.14; font-weight: 400; letter-spacing: -.045em; text-wrap: initial; }
+.beyond-work-step > p:not(.beyond-step-type) { max-width: 39ch; margin: 23px 0 0; color: #c6cbbf; font-size: 18px; line-height: 1.65; letter-spacing: -.02em; }
+.beyond-work-tags { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 25px; }
+.beyond-work-tags span { color: #dce0d4; font-size: 15px; line-height: 1.6; border-bottom: 1px solid #66705f; padding-bottom: 5px; }
+body.signal-system .beyond-work .beyond-link { margin-top: 25px; color: #faf9f4; border-color: #77816f; }
+
+/* The offer of a Snapshot is compact and does not impersonate a finished report. */
+body.signal-system .beyond-snapshot { padding: 94px 0; background: #f1f0e8; }
+.beyond-snapshot-layout { display: grid; grid-template-columns: 1.3fr .7fr; align-items: center; gap: 72px; }
+.beyond-snapshot .beyond-eyebrow { color: #606557; margin-bottom: 22px; }
+body.signal-system .beyond-snapshot h2 { margin: 0; max-width: none; font-size: clamp(42px, 5vw, 64px); color: #232823; font-weight: 400; line-height: 1.06; letter-spacing: -.05em; }
+.beyond-snapshot h2 em { color: #a73d20; }
+.beyond-snapshot-copy > p:last-child { max-width: 38ch; margin: 24px 0 0; font-size: 18px; line-height: 1.6; color: #555c50; }
+.beyond-snapshot-invite { text-align: center; }
+.beyond-engines { display: flex; align-items: center; justify-content: center; gap: 26px; margin-bottom: 30px; }
+.beyond-engines img { display: block; object-fit: contain; width: 30px; height: 30px; }
+body.signal-system .beyond-cta { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 60px; max-width: 100%; padding: 17px 26px; border: 1px solid #929b88; border-radius: 100px; color: #232823; background: #fafbf6; text-decoration: none; font-size: 17px; line-height: 1.5; font-weight: 400; transition: background .2s ease, border-color .2s ease; }
+.beyond-cta span { font-size: 23px; }
+body.signal-system .beyond-cta:hover { background: #ffffff; border-color: #232823; }
+.beyond-snapshot-invite p { margin: 15px 0 24px; color: #5c6354; font-size: 16px; line-height: 1.5; }
+body.signal-system .beyond-method-link { color: #555c50; font-size: 15px; line-height: 1.5; text-decoration: underline; text-decoration-color: #b3b9a9; text-underline-offset: 5px; }
+
+/* Scroll-led, never time-led. No hidden content, pinning or input interception.
+   Existing tested controller measures each element and supplies --scene-progress. */
+@media (prefers-reduced-motion: no-preference) and (min-width: 760px) {
+  .beyond-heading[data-scroll-ready] .beyond-word { opacity: clamp(.8, calc(var(--scene-progress) * 2.3 - var(--word) * .12), 1); transform: translateY(clamp(0px, calc((.65 - var(--scene-progress)) * 22px + var(--word) * 2px), 20px)); }
+  .beyond-world[data-scroll-ready] { --opening: clamp(0, calc(var(--scene-progress) * 1.22), 1); --closed: calc(1 - var(--opening)); }
+  .beyond-world[data-scroll-ready] .position-camera { transform: translateY(calc(var(--closed) * 8px)) scale(calc(1 + var(--closed) * .065)); }
+  .beyond-world[data-scroll-ready] .position-plane-left { transform: translate(calc(var(--closed) * 140px), calc(var(--closed) * 8px)); }
+  .beyond-world[data-scroll-ready] .position-plane-right { transform: translate(calc(var(--closed) * -145px), calc(var(--closed) * -10px)); }
+  .beyond-world[data-scroll-ready] .position-disc { transform: translateY(calc(var(--closed) * 12px)) scale(calc(1 - var(--closed) * .035)); }
+  .beyond-work[data-scroll-ready] .beyond-spark { transform: rotate(calc(var(--scene-progress) * 100deg)); }
+  .beyond-work-step[data-scroll-ready]::before { transform: scaleY(clamp(0, calc(var(--scene-progress) * 1.8), 1)); }
+  .beyond-work-step[data-scroll-ready] .beyond-step-pin { background: color-mix(in srgb, #ff8157 calc(var(--scene-progress) * 100%), #242924); }
+  .beyond-work-step[data-scroll-ready] h3 { opacity: clamp(.4, calc(var(--scene-progress) * 2.3), 1); transform: translateY(clamp(0px, calc((.5 - var(--scene-progress)) * 32px), 16px)); }
+}
+
+@media (max-width: 1023px) {
+  .beyond-wrap { width: calc(100% - 48px); }
+  body.signal-system .beyond-intro { padding-top: 82px; }
+  .beyond-heading { grid-template-columns: 1.2fr .8fr; gap: 32px; }
+  body.signal-system .beyond-heading h2 { font-size: clamp(48px, 6.2vw, 65px); }
+  .beyond-intro-note p { font-size: 17px; }
+  .beyond-tiny-orbit { display: none; }
+  .beyond-image-window { margin-inline: -24px; }
+  .beyond-work-layout { gap: 40px; }
+  body.signal-system .beyond-work h2 { font-size: 49px; }
+  .beyond-work-step { padding-left: 28px; }
+  body.signal-system .beyond-work-step h3 { font-size: 32px; }
+  .beyond-snapshot-layout { gap: 30px; }
+}
+@media (max-width: 759px) {
+  .beyond-wrap { width: calc(100% - 40px); }
+  body.signal-system .beyond-intro { padding-top: 68px; }
+  .beyond-heading { grid-template-columns: 1fr; gap: 30px; padding-bottom: 36px; }
+  body.signal-system .beyond-heading h2 { font-size: clamp(42px, 9.7vw, 68px); }
+  .beyond-intro-note { max-width: 38ch; }
+  .beyond-intro-note p { font-size: 18px; margin-bottom: 12px; }
+  .beyond-image-window { width: calc(100% + 40px); margin: 6px -20px 0; aspect-ratio: 1.5; overflow: clip; }
+  .position-art { position: absolute; width: 158%; max-width: none; height: auto; left: -29%; top: 2%; }
+  .beyond-world-labels { gap: 12px; font-size: 15px; align-items: start; padding-top: 19px; }
+  .beyond-world-labels span { display: block; }
+  .beyond-world-labels span::before { display: block; margin-bottom: 8px; }
+  .beyond-world-labels span:nth-child(2) { text-align: center; }
+  .beyond-world-labels span:nth-child(2)::before { margin-inline: auto; }
+  .beyond-world-labels span:last-child { text-align: right; }
+  .beyond-world-labels span:last-child::before { margin-left: auto; }
+  .beyond-signoff { margin-top: 34px; padding-block: 24px; font-size: 15px; }
+  .beyond-signoff span { margin-left: 3px; }
+  body.signal-system .beyond-work { padding: 66px 0 70px; }
+  .beyond-work-layout { grid-template-columns: 1fr; gap: 54px; }
+  .beyond-work-heading { position: relative; top: auto; }
+  body.signal-system .beyond-work h2 { font-size: clamp(45px, 10vw, 60px); }
+  .beyond-work-heading h2 br:nth-child(2) { display: none; }
+  .beyond-spark { display: none; }
+  .beyond-eyebrow { font-size: 16px; margin-bottom: 20px; }
+  .beyond-work-step { padding-left: 28px; padding-bottom: 48px; margin-left: 5px; }
+  body.signal-system .beyond-work-step h3 { font-size: clamp(28px, 7.2vw, 38px); }
+  .beyond-work-step > p:not(.beyond-step-type) { font-size: 17px; margin-top: 20px; }
+  .beyond-work-step::before { background: #586451; }
+  body.signal-system .beyond-snapshot { padding-block: 62px; }
+  .beyond-snapshot-layout { grid-template-columns: 1fr; gap: 40px; }
+  body.signal-system .beyond-snapshot h2 { font-size: clamp(40px, 9.8vw, 60px); }
+  .beyond-snapshot-copy > p:last-child { font-size: 18px; }
+  .beyond-snapshot-invite { text-align: left; }
+  .beyond-engines { justify-content: flex-start; margin-bottom: 24px; }
+  body.signal-system .beyond-cta { font-size: 16px; }
+}
+@media (max-height: 650px) { .beyond-work-heading { position: relative; top: auto; } }
+@media (prefers-reduced-motion: reduce) {
+  .beyond-work-heading { position: relative; top: auto; }
+  .beyond-link span, body.signal-system .beyond-cta { transition: none; }
+}

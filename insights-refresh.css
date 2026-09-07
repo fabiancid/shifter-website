@@ -1,0 +1,254 @@
+/* Editorial shelf + reading pages. Loaded after the shared inner-page layer. */
+body.inner-page.page-insights .note-main,
+body.inner-page.page-article .note-main {
+  width: min(1120px, calc(100% - 80px));
+  max-width: none;
+  margin-inline: auto;
+  padding: 80px 0 104px;
+  color: var(--page-ink);
+  font-family: "Geist", sans-serif;
+}
+
+body.inner-page.page-insights .note-main :is(h1, h2, h3),
+body.inner-page.page-article .note-main :is(h1, h2, h3) {
+  color: var(--page-ink);
+  font-family: "Geist", sans-serif;
+  font-weight: 400;
+  letter-spacing: -.045em;
+  text-wrap: pretty;
+}
+
+body.inner-page.page-insights .note-main p,
+body.inner-page.page-article .note-main p {
+  color: var(--page-muted);
+  font-family: "Geist", sans-serif;
+  font-weight: 400;
+}
+
+body.inner-page.page-insights .note-main .note-kicker,
+body.inner-page.page-article .note-main .note-kicker {
+  margin-bottom: 24px;
+  color: var(--page-orange);
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: .025em;
+  text-transform: none;
+}
+
+body.inner-page.page-insights .note-head { max-width: none; }
+body.inner-page.page-insights .note-head h1 {
+  max-width: 17ch;
+  font-size: clamp(44px, 5.8vw, 76px);
+  line-height: 1.04;
+  letter-spacing: -.06em;
+}
+body.inner-page.page-insights .note-main .note-lede {
+  max-width: 48ch;
+  margin-top: 26px;
+  font-size: 19px;
+  line-height: 1.65;
+}
+body.inner-page.page-insights .accent-dot { color: var(--page-orange); }
+
+/* One lead story, then a pair of open shelves. No nested text cards. */
+body.inner-page.page-insights .insights-list { margin-top: 58px; }
+body.inner-page.page-insights :is(.insights-featured, .insights-card) {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+body.inner-page.page-insights .insights-featured > a {
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: clamp(28px, 4vw, 56px);
+  min-height: 0;
+  overflow: visible;
+}
+body.inner-page.page-insights :is(.insights-featured-visual, .insights-card-visual) {
+  aspect-ratio: 8 / 5;
+  min-height: 0;
+  border: 0;
+  border-radius: 12px;
+  background: #f3f0e7;
+}
+body.inner-page.page-insights .insights-featured-visual { aspect-ratio: 1 / 1; }
+body.inner-page.page-insights .insights-featured-visual::after { content: none; }
+body.inner-page.page-insights :is(.insights-featured, .insights-card) img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: none;
+}
+body.inner-page.page-insights .insights-featured-copy { padding: 24px 0; }
+body.inner-page.page-insights .insights-card-copy { padding: 26px 0 0; }
+body.inner-page.page-insights .insights-card-topline { margin-bottom: 20px; }
+body.inner-page.page-insights .insights-type {
+  color: var(--page-orange);
+  font-family: "Geist", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .025em;
+  text-transform: none;
+}
+body.inner-page.page-insights .insights-type::before { display: none; }
+body.inner-page.page-insights .insights-read-arrow { color: var(--page-orange); }
+body.inner-page.page-insights .insights-featured h2 { font-size: clamp(30px, 3.2vw, 43px); line-height: 1.12; }
+body.inner-page.page-insights .insights-card h2 { font-size: clamp(27px, 2.65vw, 35px); line-height: 1.15; }
+body.inner-page.page-insights .note-main .insights-takeaway {
+  max-width: 48ch;
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+body.inner-page.page-insights .insights-tags { gap: 16px; margin-top: 24px; }
+body.inner-page.page-insights .insights-tags li {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--page-muted);
+  font-family: "Geist", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.5;
+}
+body.inner-page.page-insights .note-main .insights-card-meta {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top-color: #dddfd5;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+body.inner-page.page-insights .insights-section-heading { margin-top: 78px; padding-bottom: 18px; }
+body.inner-page.page-insights .insights-section-heading p { font-size: 25px; line-height: 1.2; letter-spacing: -.035em; color: var(--page-ink); }
+body.inner-page.page-insights .insights-section-heading span { font-family: "Geist", sans-serif; font-size: 14px; letter-spacing: 0; text-transform: none; }
+body.inner-page.page-insights .insights-grid { gap: 40px; }
+body.inner-page.page-insights .note-main .insights-evidence { margin: 12px 0 0; font-size: 14px; line-height: 1.6; color: var(--page-orange); }
+
+/* Wide title and cover; uninterrupted, comfortable reading measure below. */
+body.inner-page.page-article .note-main { width: min(1040px, calc(100% - 80px)); }
+body.inner-page.page-article article > * { max-width: 720px; margin-inline: auto; }
+body.inner-page.page-article article > .note-head { max-width: 920px; }
+body.inner-page.page-article .note-head h1 { max-width: 27ch; font-size: clamp(38px, 4.9vw, 64px); line-height: 1.08; letter-spacing: -.052em; }
+body.inner-page.page-article .note-main .note-lede { max-width: 64ch; margin: 25px 0 0; font-size: 19px; line-height: 1.65; }
+body.inner-page.page-article .note-author { margin-top: 30px; padding: 19px 0; gap: 14px; border-bottom: 0; }
+body.inner-page.page-article .note-main .note-author-name { margin: 0; color: var(--page-ink); font-size: 15px; }
+body.inner-page.page-article .note-main .note-author-meta { margin: 3px 0 0; font-size: 14px; line-height: 1.5; letter-spacing: 0; text-transform: none; }
+body.inner-page.page-article .note-main .note-author-date { margin: 0; font-size: 14px; letter-spacing: 0; line-height: 1.6; }
+body.inner-page.page-article article > .article-cover { max-width: 920px; margin-block: 26px 40px; border-radius: 12px; overflow: hidden; background: #f3f0e7; }
+body.inner-page.page-article .article-cover img { display: block; width: 100%; height: auto; max-height: 420px; object-fit: contain; border: 0; border-radius: 0; background: transparent; }
+body.inner-page.page-article .note-main p { font-size: 17px; line-height: 1.8; margin-bottom: 22px; }
+body.inner-page.page-article .note-main h2 { margin-top: 64px; margin-bottom: 20px; font-size: clamp(29px, 3.1vw, 38px); line-height: 1.18; }
+body.inner-page.page-article .note-main h3 { margin-top: 34px; margin-bottom: 14px; font-size: 23px; line-height: 1.35; letter-spacing: -.025em; }
+body.inner-page.page-article article > h3[id] { padding-top: 35px; margin-top: 48px; border-top: 1px solid #dddfd5; font-size: 28px; line-height: 1.3; }
+body.inner-page.page-article .note-main [id] { scroll-margin-top: 112px; }
+body.inner-page.page-article .note-main article a { text-decoration-color: #bd876e; text-underline-offset: 4px; }
+body.inner-page.page-article .note-main article a:not(.cta-primary):hover { color: var(--page-orange); }
+
+/* Contents are always available; no script or animation gates reading. */
+body.inner-page.page-article .article-toc { margin-block: 32px 44px; padding: 26px 0; border: 0; border-block: 1px solid #dddfd5; border-radius: 0; background: transparent; }
+body.inner-page.page-article .note-main .article-toc p { margin: 0 0 16px; color: var(--page-orange); font-size: 14px; line-height: 1.5; letter-spacing: 0; text-transform: none; }
+body.inner-page.page-article .article-toc ol { margin: 0; padding-left: 22px; columns: 2; column-gap: 40px; }
+body.inner-page.page-article .article-toc li { margin-bottom: 7px; padding-left: 4px; font-size: 15px; line-height: 1.6; break-inside: avoid; }
+body.inner-page.page-article .article-toc li::marker { color: var(--page-muted); font-size: 14px; }
+body.inner-page.page-article .article-toc a { display: inline-block; padding-block: 4px; color: var(--page-ink); text-decoration: none; }
+body.inner-page.page-article .article-toc-sections { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0 0 22px; padding: 0 0 18px; border-bottom: 1px solid #dddfd5; list-style: none; }
+body.inner-page.page-article .article-toc-sections li { padding: 0; margin: 0; }
+
+/* Short answers, evidence and detail each have a quieter, distinct treatment. */
+body.inner-page.page-article .definition-block { margin-block: 38px; padding: 30px; border: 0; border-radius: 10px; background: #f4ecdf; box-shadow: none; }
+body.inner-page.page-article .note-main .definition-label { margin-bottom: 14px; color: var(--page-orange); font-size: 14px; letter-spacing: .02em; }
+body.inner-page.page-article .definition-block h2 { margin: 0 0 16px; font-size: 30px; }
+body.inner-page.page-article .definition-grid { gap: 18px; margin-top: 26px; }
+body.inner-page.page-article .definition-grid > div { padding: 14px 0 0; border: 0; border-top: 1px solid #d6cbb9; border-radius: 0; background: transparent; }
+body.inner-page.page-article .definition-grid span { color: var(--page-orange); font-family: "Geist", sans-serif; font-weight: 400; letter-spacing: 0; font-size: 14px; }
+body.inner-page.page-article .definition-grid strong { font-family: "Geist", sans-serif; font-weight: 400; font-size: 18px; line-height: 1.4; }
+body.inner-page.page-article .field-example { margin-block: 32px; padding: 30px; border: 0; border-radius: 10px; background: #f5dfce; box-shadow: none; color: var(--page-ink); }
+body.inner-page.page-article .field-example h3 { margin-top: 0; font-size: 27px; }
+body.inner-page.page-article .field-example a { color: var(--page-ink); }
+body.inner-page.page-article .field-example .evidence-stats { margin-block: 24px; color: var(--page-ink); }
+body.inner-page.page-article .evidence-stats { flex-wrap: wrap; gap: 28px; }
+body.inner-page.page-article .evidence-stats strong { font-family: "Geist", sans-serif; font-weight: 400; font-size: 42px; color: var(--page-ink); }
+body.inner-page.page-article .evidence-stats strong i { color: var(--page-muted); font-size: 18px; }
+body.inner-page.page-article .evidence-stats span { color: var(--page-muted); font-family: "Geist", sans-serif; font-size: 14px; letter-spacing: 0; text-transform: none; }
+body.inner-page.page-article .note-statband { padding: 20px 0; margin-block: 32px; border: 0; border-block: 1px solid #dddfd5; border-radius: 0; background: transparent; }
+body.inner-page.page-article .trust-line { margin-block: 38px; padding: 8px 0 8px 24px; border-color: var(--page-orange); color: var(--page-ink); font-family: "Geist", sans-serif; font-size: 28px; font-weight: 400; line-height: 1.45; letter-spacing: -.03em; }
+
+/* Comparison facts are rows, not grids of tiny paragraphs. */
+body.inner-page.page-article :is(.discipline-card, .agency-spec) { display: block; padding: 0; margin-block: 24px 40px; border: 0; border-top: 1px solid #dddfd5; border-radius: 0; background: transparent; }
+body.inner-page.page-article :is(.discipline-card, .agency-spec) > div { display: grid; grid-template-columns: 105px minmax(0, 1fr); gap: 24px; padding: 17px 0; border: 0; border-bottom: 1px solid #dddfd5; }
+body.inner-page.page-article :is(.discipline-card, .agency-spec) dt { padding: 3px 0 0; margin: 0; color: var(--page-orange); font-family: "Geist", sans-serif; font-size: 14px; font-weight: 400; letter-spacing: 0; text-transform: none; }
+body.inner-page.page-article :is(.discipline-card, .agency-spec) dd { margin: 0; color: var(--page-muted); font-size: 16px; line-height: 1.7; }
+body.inner-page.page-article .comparison-wrap { border-color: #dddfd5; border-radius: 8px; box-shadow: none; }
+body.inner-page.page-article .comparison-table { font-size: 15px; line-height: 1.6; color: var(--page-muted); }
+body.inner-page.page-article .comparison-table :is(caption, th) { font-family: "Geist", sans-serif; font-weight: 400; letter-spacing: 0; text-transform: none; }
+body.inner-page.page-article .comparison-table caption { font-size: 14px; background: #f3f0e7; color: var(--page-ink); }
+body.inner-page.page-article .comparison-table th { color: var(--page-ink); }
+body.inner-page.page-article :is(.priority-list, .thirty-day-list) li { color: var(--page-muted); font-size: 17px; line-height: 1.75; }
+body.inner-page.page-article :is(.priority-list, .thirty-day-list) li::before { color: var(--page-orange); font-weight: 400; }
+body.inner-page.page-article .source-list li { color: var(--page-muted); font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+body.inner-page.page-article .source-list span { font-size: 14px; line-height: 1.65; color: var(--page-muted); }
+
+/* Preserve explanatory figures and their full-size reading affordances. */
+body.inner-page.page-article :is(.article-figure, .portrait-figure) { margin-block: 36px 44px; }
+body.inner-page.page-article :is(.article-figure, .portrait-figure) img { display: block; width: 100%; height: auto; border: 1px solid #dddfd5; border-radius: 8px; box-shadow: none; }
+body.inner-page.page-article .portrait-figure { max-width: 600px; }
+body.inner-page.page-article .portrait-figure figcaption { font-family: "Geist", sans-serif; font-size: 14px; line-height: 1.6; letter-spacing: 0; }
+
+/* The shared layer owns buttons; this family only defines the invitation's layout. */
+body.inner-page.page-insights .fit-cta-panel,
+body.inner-page.page-article .fit-cta-panel { display: grid; grid-template-columns: 1fr; gap: 28px; margin-top: 72px; padding: 36px; background: #f4ecdf; border: 0; border-radius: 12px; box-shadow: none; color: var(--page-ink); }
+body.inner-page.page-insights .fit-cta-panel::before,
+body.inner-page.page-insights .fit-cta-panel::after,
+body.inner-page.page-article .fit-cta-panel::before,
+body.inner-page.page-article .fit-cta-panel::after { content: none; }
+body.inner-page.page-insights .note-main .fit-cta-panel h3,
+body.inner-page.page-article .note-main .fit-cta-panel h3 { margin: 0; font-size: clamp(28px, 3vw, 36px); line-height: 1.2; color: var(--page-ink); }
+body.inner-page.page-insights .note-main .fit-cta-panel p,
+body.inner-page.page-article .note-main .fit-cta-panel p { margin: 14px 0 0; font-size: 16px; line-height: 1.7; color: var(--page-muted); }
+body.inner-page.page-insights .fit-cta-panel .cta-action,
+body.inner-page.page-article .fit-cta-panel .cta-action { justify-self: start; min-width: 0; max-width: 100%; }
+body.inner-page.page-insights .note-main .fit-cta-panel .cta-capacity,
+body.inner-page.page-article .note-main .fit-cta-panel .cta-capacity { margin-top: 12px; font-family: "Geist", sans-serif; font-size: 14px; letter-spacing: 0; text-transform: none; }
+
+body.inner-page.page-insights main a:focus-visible,
+body.inner-page.page-article main a:focus-visible { outline: 2px solid var(--page-orange); outline-offset: 5px; border-radius: 2px; }
+
+@media (max-width: 800px) {
+  body.inner-page.page-insights .note-main,
+  body.inner-page.page-article .note-main { width: calc(100% - 40px); padding-top: 48px; }
+  body.inner-page.page-insights .insights-featured > a { grid-template-columns: 1fr; gap: 0; }
+  body.inner-page.page-insights .insights-featured-visual { aspect-ratio: 8 / 5; }
+  body.inner-page.page-insights .insights-featured-copy { padding-top: 26px; padding-bottom: 0; }
+  body.inner-page.page-insights .insights-grid { gap: 32px; }
+  body.inner-page.page-article .note-author { flex-wrap: wrap; }
+  body.inner-page.page-article .note-main .note-author-date { width: 100%; text-align: left; }
+}
+@media (max-width: 600px) {
+  body.inner-page.page-insights .insights-grid { grid-template-columns: 1fr; gap: 44px; }
+  body.inner-page.page-insights .insights-section-heading { margin-top: 56px; }
+  body.inner-page.page-insights .insights-card-meta { flex-direction: row; }
+  body.inner-page.page-article .article-toc ol { columns: 1; }
+  body.inner-page.page-article :is(.discipline-card, .agency-spec) > div { grid-template-columns: 1fr; gap: 7px; }
+  body.inner-page.page-article .definition-grid { grid-template-columns: 1fr; gap: 12px; }
+  body.inner-page.page-article :is(.definition-block, .field-example) { padding: 24px 20px; }
+  body.inner-page.page-article .evidence-stats { gap: 22px; }
+  body.inner-page.page-article .note-main h2 { margin-top: 48px; }
+  body.inner-page.page-article .definition-block h2 { margin-top: 0; }
+  body.inner-page.page-insights .fit-cta-panel,
+  body.inner-page.page-article .fit-cta-panel { padding: 26px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.inner-page.page-insights :is(.insights-featured, .insights-card, .insights-read-arrow, .insights-featured img, .insights-card img) { transition: none; transform: none; }
+}
+@media print {
+  body.inner-page.page-insights .note-main,
+  body.inner-page.page-article .note-main { width: 100%; padding: 0; }
+  body.inner-page.page-article .article-cover { display: none; }
+  body.inner-page.page-article .comparison-wrap { overflow: visible; }
+  body.inner-page.page-article .comparison-table { min-width: 0; }
+}

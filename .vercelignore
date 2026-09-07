@@ -1,0 +1,14 @@
+# Local account state, recovery notes and private design studies are not site output.
+.git/
+.github/
+.vercel/
+.env
+.env.*
+docs/
+tests/
+APPLY-LOG.md
+README.md
+redesign.html
+.superpowers/
+.codex/
+.claude/

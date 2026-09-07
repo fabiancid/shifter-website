@@ -1,0 +1,14 @@
+{
+  "name": "shifter-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/verify-site.mjs",
+    "build": "npm test"
+  },
+  "devDependencies": {
+    "parse5": "7.3.0",
+    "postcss": "8.5.6",
+    "postcss-value-parser": "4.2.0"
+  }
+}

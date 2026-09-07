@@ -1,0 +1,240 @@
+/* Glass reveal. The artwork has no copy; meaning and controls never await motion. */
+body.story-page .hero.hero-impact {
+  --shift-paper: #f6f5f0;
+  --shift-ink: #252a26;
+  --shift-orange: #ce542c;
+  padding: 54px 32px 64px;
+  background: var(--shift-paper);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+body.story-page .hero-impact .hero-grid {
+  max-width: 1248px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.07fr);
+  align-items: center;
+  gap: 12px;
+}
+
+body.story-page .hero-impact .hero-intro {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+
+body.story-page .hero-impact .eyebrow {
+  margin: 0 0 30px;
+  color: #62685f;
+  font: 400 14px/1.5 "Geist", sans-serif;
+  letter-spacing: -.01em;
+  text-transform: none;
+}
+
+body.story-page .hero-impact .hero-intro h1 {
+  max-width: 10ch;
+  margin: 0;
+  color: var(--shift-ink);
+  font-family: "Geist", sans-serif;
+  font-size: clamp(64px, 6.65vw, 94px);
+  font-weight: 400;
+  line-height: .97;
+  letter-spacing: -.067em;
+  text-wrap: initial;
+}
+
+body.story-page .hero-impact .hero-line {
+  display: block;
+  overflow: visible;
+  white-space: normal;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+body.story-page .hero-impact .hero-impact-dot { color: var(--shift-orange); }
+
+body.story-page .hero-impact .hero-lede {
+  max-width: 34ch;
+  margin: 28px 0 0;
+  color: #575e56;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: -.02em;
+}
+
+body.story-page .hero-impact .hero-cta-row {
+  margin-top: 26px;
+  gap: 23px;
+}
+
+body.story-page .hero-impact .hero-cta {
+  min-height: 52px;
+  padding-inline: 23px;
+  border-radius: 999px;
+  /* The shared button layer uses !important; keep this exception hero-only. */
+  background: var(--shift-ink) !important;
+  border-color: var(--shift-ink) !important;
+  color: #fff;
+  box-shadow: none !important;
+}
+
+body.story-page .hero-impact .hero-cta:hover {
+  background: #414940 !important;
+  border-color: #414940 !important;
+  box-shadow: none !important;
+}
+
+body.story-page .hero-impact .hero-preview-link { color: var(--shift-ink); }
+
+body.story-page .hero-impact .hero-cta:focus-visible,
+body.story-page .hero-impact .hero-preview-link:focus-visible {
+  outline: 2px solid #252a26;
+  outline-offset: 5px;
+}
+
+body.story-page .hero-impact .hero-snapshot-note {
+  margin-top: 19px;
+  color: #62685f;
+  font-size: 14px;
+}
+
+body.story-page .hero-impact .hero-shift-art {
+  width: 150%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  margin: -22px 0 0 -36%;
+  opacity: 1;
+  transform: none;
+  animation: none;
+  /* Keep the photograph's tonal edges out of the typography column. */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 13%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 13%, #000 93%, transparent);
+}
+
+body.story-page .hero-impact .hero-shift-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 10%, #000 88%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 10%, #000 88%, transparent);
+}
+
+body.story-page .hero-impact .hero-glass-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  border-radius: 0;
+}
+
+body.story-page .hero-impact .hero-glass-pane {
+  position: absolute;
+  inset: 0 auto 9% 0;
+  width: 68%;
+  /* The final composition is the default, including without JavaScript. */
+  transform: none;
+  animation: none;
+  background: linear-gradient(110deg, rgba(246, 245, 240, .08), rgba(246, 245, 240, .26));
+  -webkit-backdrop-filter: blur(14px) saturate(.86);
+  backdrop-filter: blur(14px) saturate(.86);
+  border-right: 1px solid rgba(255, 255, 249, .88);
+  box-shadow: 1px 0 0 rgba(130, 112, 84, .28), inset -2px 0 3px rgba(255, 255, 249, .4);
+}
+
+body.story-page .hero-impact .hero-glass-pane::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .13;
+  /* Tiny stationary etched texture; no animated noise or additional download. */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23867b65' filter='url(%23grain)' opacity='.6' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+body.story-page .hero-impact .hero-glass-pane::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 35%, rgba(151, 132, 103, .4));
+}
+
+/* The diagonal motif carries into the next thought, without adding a panel. */
+body.story-page #proof[data-shift-bridge] {
+  padding-top: 94px;
+  background: linear-gradient(180deg, #f6f5f0, #fff 68%);
+}
+
+body.story-page #proof[data-shift-bridge] .story-signal { gap: 7px; height: 52px; }
+body.story-page #proof[data-shift-bridge] .story-signal i {
+  width: 10px;
+  height: 31px;
+  border-radius: 2px;
+  background: #3e443e;
+  transform: skewY(-18deg) rotate(20deg);
+}
+body.story-page #proof[data-shift-bridge] .story-signal i:last-child {
+  height: 38px;
+  background: #d76033;
+  transform: translateY(-9px) skewY(-18deg) rotate(20deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.story-page .hero-impact[data-shift-ready] .hero-shift-accent {
+    animation: hero-glass-reveal 2400ms cubic-bezier(.22, .72, .2, 1) both;
+  }
+  body.story-page .hero-impact[data-shift-ready][data-shift-paused] .hero-shift-accent {
+    animation-play-state: paused;
+  }
+  body.story-page .hero-impact[data-shift-ready] .hero-shift-scene {
+    transform: translateY(calc(var(--shift-scroll, 0) * -20px));
+  }
+  body.story-page #proof[data-shift-bridge] .story-signal i:last-child {
+    transform: translateY(calc(-4px - var(--shift-scroll, 1) * 8px)) skewY(-18deg) rotate(20deg);
+  }
+}
+
+@keyframes hero-glass-reveal {
+  0%, 10% { transform: translateX(24%); }
+  100% { transform: translate(0, 0); }
+}
+
+@media (min-width: 1600px) {
+  body.story-page .hero.hero-impact { padding-block: 76px 78px; }
+}
+
+@media (max-width: 899px) {
+  body.story-page .hero.hero-impact { padding: 44px 28px 54px; }
+  body.story-page .hero-impact .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: 0; }
+  body.story-page .hero-impact .hero-intro h1 { font-size: clamp(55px, 7.8vw, 70px); }
+  body.story-page .hero-impact .hero-shift-art { width: 150%; margin-left: -36%; }
+  body.story-page .hero-impact .hero-lede { font-size: 17px; max-width: 31ch; }
+  body.story-page .hero-impact .hero-cta-row { align-items: flex-start; flex-direction: column; gap: 16px; }
+}
+
+@media (max-width: 639px) {
+  body.story-page .hero.hero-impact { padding: 34px 24px 12px; }
+  body.story-page .hero-impact .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  body.story-page .hero-impact .eyebrow { margin-bottom: 24px; font-size: 13px; }
+  body.story-page .hero-impact .hero-intro h1 { font-size: clamp(53px, 13.4vw, 80px); max-width: 10ch; }
+  body.story-page .hero-impact .hero-lede { max-width: 34ch; margin-top: 24px; font-size: 17px; }
+  body.story-page .hero-impact .hero-cta-row { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 16px 20px; }
+  body.story-page .hero-impact .hero-cta { padding-inline: 21px; }
+  body.story-page .hero-impact .hero-snapshot-note { max-width: 30ch; font-size: 14px; }
+  body.story-page .hero-impact .hero-shift-art { width: 145%; max-width: none; margin: 12px 0 -16px -30%; }
+  body.story-page .hero-impact .hero-glass-pane {
+    -webkit-backdrop-filter: blur(8px) saturate(.86);
+    backdrop-filter: blur(8px) saturate(.86);
+  }
+  body.story-page #proof[data-shift-bridge] { padding-top: 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.story-page .hero-impact .hero-shift-accent,
+  body.story-page .hero-impact .hero-shift-scene { animation: none; transform: none; }
+}

@@ -1,0 +1,266 @@
+/* Start and confirmation: quiet paper surfaces, legible choices, native controls.
+   Shared typography, navigation, footer and buttons live in site-pages.css. */
+body.inner-page:is(.page-start, .page-success) {
+  background: var(--page-paper, #faf9f6);
+  color: var(--page-ink, #292b28);
+}
+
+body.inner-page.page-start .start-main {
+  max-width: 880px;
+  padding: 76px 28px 112px;
+}
+
+body.inner-page.page-start .start-head { margin: 0 auto 44px; }
+body.inner-page.page-start .note-kicker,
+body.inner-page.page-success .section-kicker {
+  margin: 0 0 22px;
+  color: var(--page-muted, #646760);
+  font: 400 15px/1.5 "Geist", sans-serif;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+body.inner-page.page-start .start-head h1 {
+  max-width: 16ch;
+  margin-inline: auto;
+  font: 400 clamp(38px, 5.2vw, 62px)/1.08 "Geist", sans-serif;
+  letter-spacing: -.055em;
+  text-wrap: balance;
+}
+
+body.inner-page.page-start .start-head h1 span { color: var(--page-orange, #be4827); }
+body.inner-page.page-start .start-lede {
+  margin-top: 22px;
+  color: var(--page-muted, #646760);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+body.inner-page.page-start .start-card,
+body.inner-page.page-start .start-plan {
+  max-width: 680px;
+  padding: 36px 40px 40px;
+  border: 1px solid #dedfd6;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 3px 4px #292b2803, 0 20px 48px #292b2807;
+}
+
+body.inner-page.page-start .start-card { margin-top: 0; }
+body.inner-page.page-start .start-result { width: min(100%, 680px); }
+body.inner-page.page-start .start-progress {
+  margin: 0 0 28px;
+  color: var(--page-muted, #646760);
+  font: 400 14px/1.5 "Geist", sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* The text is the accessible progress indicator; these two strokes echo it. */
+body.inner-page.page-start .start-card .start-progress::before {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 4px;
+  margin: 0 44px 3px 0;
+  border-radius: 4px;
+  background: var(--page-orange, #be4827);
+  box-shadow: 34px 0 #dedfd6;
+}
+
+body.inner-page.page-start .start-card:has([data-start-step="scope"]:not([hidden])) .start-progress::before {
+  box-shadow: 34px 0 var(--page-orange, #be4827);
+}
+
+body.inner-page.page-start .start-q,
+body.inner-page.page-start .start-plan h2 {
+  margin: 0 0 26px;
+  color: var(--page-ink, #292b28);
+  font: 400 clamp(26px, 3vw, 32px)/1.2 "Geist", sans-serif;
+  letter-spacing: -.035em;
+}
+
+body.inner-page.page-start .start-field { margin-bottom: 26px; }
+body.inner-page.page-start .start-label,
+body.inner-page.page-start .start-scope legend {
+  margin-bottom: 10px;
+  color: var(--page-ink, #292b28);
+  font: 400 16px/1.5 "Geist", sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+body.inner-page.page-start .start-label span {
+  color: var(--page-muted, #646760);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+body.inner-page.page-start .start-input {
+  min-height: 54px;
+  padding: 14px 16px;
+  border: 1px solid #81857b;
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--page-ink, #292b28);
+  font: 400 16px/1.5 "Geist", sans-serif;
+}
+
+body.inner-page.page-start .start-input::placeholder { color: var(--page-muted, #646760); opacity: 1; }
+body.inner-page.page-start .start-hint,
+body.inner-page.page-start .start-disclosure {
+  color: var(--page-muted, #646760);
+  font-size: 14px;
+  line-height: 1.6;
+  text-transform: none;
+}
+
+body.inner-page.page-start .start-error { color: #8b1d14; font-size: 14px; line-height: 1.6; }
+body.inner-page.page-start .start-input[aria-invalid="true"] {
+  border-color: #9f2015;
+  background: #fffafa;
+}
+
+body.inner-page.page-start .start-choice-list { gap: 12px; }
+body.inner-page.page-start .start-choice-input {
+  position: absolute;
+  z-index: 1;
+  top: 23px;
+  left: 18px;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  accent-color: var(--page-orange, #be4827);
+  cursor: pointer;
+}
+
+body.inner-page.page-start .start-choice-body {
+  padding: 20px 20px 20px 54px;
+  border: 1px solid #81857b;
+  border-radius: 15px;
+  background: #ffffff;
+  color: var(--page-ink, #292b28);
+}
+
+body.inner-page.page-start .start-choice-body strong { font-size: 17px; font-weight: 400; line-height: 1.4; }
+body.inner-page.page-start .start-choice-body small {
+  margin-top: 8px;
+  color: var(--page-muted, #646760);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+body.inner-page.page-start .start-choice:hover .start-choice-body { border-color: var(--page-orange, #be4827); }
+body.inner-page.page-start .start-choice-input:checked + .start-choice-body {
+  border-color: var(--page-orange, #be4827);
+  background: #fbeade;
+  color: var(--page-ink, #292b28);
+}
+
+body.inner-page.page-start .start-choice-input:checked + .start-choice-body small { color: #5c5e57; }
+body.inner-page.page-start .start-scope[aria-invalid="true"] .start-choice-body { border-color: #9f2015; }
+body.inner-page.page-start .start-nav { margin-top: 30px; padding-top: 24px; border-top: 1px solid #e5e6de; }
+body.inner-page.page-start .start-back { min-height: 48px; color: var(--page-muted, #646760); font-size: 16px; }
+body.inner-page.page-start .start-retry { min-height: 44px; font-size: 15px; font-weight: 400; }
+
+body.inner-page.page-start .start-reco {
+  color: var(--page-orange, #be4827);
+  font: 400 14px/1.5 "Geist", sans-serif;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+body.inner-page.page-start .start-reco i { background: var(--page-orange, #be4827); box-shadow: none; }
+body.inner-page.page-start .start-price { margin: 0 0 24px; font-size: 38px; font-weight: 400; letter-spacing: -.035em; }
+body.inner-page.page-start .start-price span,
+body.inner-page.page-start .start-arc,
+body.inner-page.page-start .start-more a,
+body.inner-page.page-start .start-availability {
+  color: var(--page-muted, #646760);
+  font: 400 14px/1.65 "Geist", sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+body.inner-page.page-start .start-scope-copy,
+body.inner-page.page-start .pricing-list { color: var(--page-muted, #646760); font-size: 16px; line-height: 1.65; }
+body.inner-page.page-start .start-arc { padding-top: 16px; border-top: 1px solid #e5e6de; }
+body.inner-page.page-start .start-more { margin-top: 20px; line-height: 1.8; }
+body.inner-page.page-start :is(.start-more, .start-disclosure, .start-noscript) a {
+  color: var(--page-orange, #be4827);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+body.inner-page.page-start .start-capture { border-left-color: var(--page-orange, #be4827); font-size: 15px; }
+
+/* Never let a surface or control style expose inactive steps or capture states. */
+body.inner-page.page-start [hidden] { display: none !important; }
+body.inner-page.page-start :is(.start-input, .start-choice-input, .start-back, .start-retry):focus-visible,
+body.inner-page.page-start .start-choice-input:focus-visible + .start-choice-body,
+body.inner-page.page-start main a:focus-visible,
+body.inner-page.page-start .start-next:focus-visible {
+  outline: 3px solid #be4827;
+  outline-offset: 4px;
+}
+
+/* Confirmation keeps its original copy and next steps; the paper seal is decorative. */
+body.inner-page.page-success .checkout-success-hero { padding: 88px 0 112px; background: var(--page-paper, #faf9f6); }
+body.inner-page.page-success .retainer-hero-grid {
+  width: min(1120px, calc(100% - 80px));
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  align-items: center;
+  gap: clamp(40px, 6vw, 88px);
+}
+
+body.inner-page.page-success .retainer-copy h1 {
+  max-width: 17ch;
+  color: var(--page-ink, #292b28);
+  font: 400 clamp(38px, 4.5vw, 60px)/1.1 "Geist", sans-serif;
+  letter-spacing: -.055em;
+}
+
+body.inner-page.page-success .retainer-lede { margin-top: 26px; color: var(--page-muted, #646760); font-size: 18px; line-height: 1.65; }
+body.inner-page.page-success .retainer-cta-row { gap: 16px; margin-top: 30px; }
+body.inner-page.page-success .retainer-secondary { font-size: 16px; font-weight: 400; }
+body.inner-page.page-success .retainer-summary {
+  padding: 24px 32px 32px;
+  border: 1px solid #e0d8cc;
+  border-radius: 24px;
+  background: #f4eee4;
+  box-shadow: 0 16px 40px #292b2806;
+}
+
+body.inner-page.page-success .success-paper-art { display: block; width: 200px; max-width: 100%; height: auto; margin: 0 auto 20px; pointer-events: none; }
+body.inner-page.page-success .pricing-label { margin: 0; color: var(--page-ink, #292b28); font: 400 26px/1.2 "Geist", sans-serif; letter-spacing: -.035em; text-transform: none; }
+body.inner-page.page-success .retainer-facts { margin-top: 26px; gap: 22px; }
+body.inner-page.page-success .retainer-facts div { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 14px; padding-top: 22px; border-color: #dcd6cb; }
+body.inner-page.page-success .retainer-facts dt { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid #ceac95; border-radius: 50%; color: #934022; font: 400 14px/1 "Geist", sans-serif; letter-spacing: 0; }
+body.inner-page.page-success .retainer-facts dd { margin: 0; color: var(--page-ink, #292b28); font-size: 16px; line-height: 1.6; }
+
+@media (max-width: 800px) {
+  body.inner-page.page-success .checkout-success-hero { padding: 60px 0 80px; }
+  body.inner-page.page-success .retainer-hero-grid { width: min(640px, calc(100% - 40px)); grid-template-columns: 1fr; gap: 40px; }
+  body.inner-page.page-success .retainer-copy h1 { max-width: 20ch; }
+}
+
+@media (max-width: 600px) {
+  body.inner-page.page-start .start-main { padding: 48px 18px 72px; }
+  body.inner-page.page-start .start-head { margin-bottom: 32px; }
+  body.inner-page.page-start .start-lede { font-size: 17px; }
+  body.inner-page.page-start .start-card,
+  body.inner-page.page-start .start-plan { padding: 26px 20px 28px; border-radius: 20px; }
+  body.inner-page.page-start .start-choice-body { padding: 18px 14px 18px 46px; }
+  body.inner-page.page-start .start-choice-input { top: 21px; left: 14px; }
+  body.inner-page.page-start .start-nav { gap: 10px; }
+  body.inner-page.page-success .retainer-summary { padding: 22px 24px 28px; }
+  body.inner-page.page-success .retainer-cta-row { align-items: stretch; flex-direction: column; }
+  body.inner-page.page-success .retainer-cta-row a { text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.inner-page.page-start :is(.start-input, .start-choice-body, .start-plan, .start-retry) { transition: none; }
+}

@@ -7,7 +7,6 @@
 - Brand name: Shifter
 - Legal name: Shifter Strategy FZ-LLC
 - UAE trade licence: 17003064
-- Founded: April 2024 (2024-04)
 - Website: https://shifter.co/
 - Contact: hello@shifter.co
 
@@ -23,7 +22,7 @@ When people ask “Is Shifter the same as shifter.io?” the answer is **No**. T
 
 ## Offer
 
-Shifter Strategy FZ-LLC is run by founder Fabian Cid, who previously scaled Hotghostwriter from zero to $2.5M ARR and was a team lead at Google. The free AI Visibility Snapshot tests 30 high-intent buyer questions across four core surfaces: ChatGPT Search, Gemini with web grounding, Claude with web search, and Perplexity Search. It shows the visibility score, competitor shortlists, source patterns, and first prioritized fixes. It is delivered within two business days with no call required. The July 2026 research note describes an earlier three-engine study; it is historical research, not a current client outcome or a ranking guarantee.
+Shifter Strategy FZ-LLC is run by founder Fabian Cid, who leads client work directly. The full scope of the free AI Visibility Snapshot is 30 high-intent buyer questions across four core surfaces: ChatGPT Search, Gemini with web grounding, Claude with web search, and Perplexity Search. Each report states actual engine coverage, search modes, dates, and attempted, clean, and unmeasured totals. Mentions, recommendations, and citations are recorded separately as counts out of clean, readable answers. Failed or blocked captures are unmeasured, not negative results; incomplete checks are labelled partial. The Snapshot includes a visibility baseline, competitor shortlists, source patterns, and first prioritized fixes. It is delivered within two business days with no call required. The July 2026 research note describes an earlier three-engine study; it is historical research, not a current client outcome or a ranking guarantee.
 
 The founder-led done-for-you service is USD 4,000/month, cancel any time, with no onboarding fee. It covers exactly one B2B brand in one primary market. Each monthly cycle tests the buyer questions, diagnoses search and AI visibility gaps, implements prioritized SEO/AEO/GEO fixes, re-tests the same questions, and reports what changed and what comes next. Shifter serves a maximum of five clients at a time and only one client per category. Larger scopes are priced separately.
 
@@ -32,10 +31,10 @@ Conditional day-90 guarantee: Shifter re-runs the same 30 questions. If the visi
 ## Pages
 
 - [Home](https://shifter.co/): Integrated SEO/AEO/GEO service, free Snapshot, proof, pricing, and FAQ
-- [Method — AI Visibility Snapshot](https://shifter.co/method): How the 30-prompt Snapshot works (engines, scoring, retest)
-- [About](https://shifter.co/about): Shifter Strategy FZ-LLC, Fabian Cid, Hotghostwriter background, and disambiguation
+- [Method — AI Visibility Snapshot](https://shifter.co/method): How the 30-question Snapshot records observations, actual coverage, and comparable retests
+- [About](https://shifter.co/about): Shifter Strategy FZ-LLC, founder Fabian Cid, contact details, and disambiguation
 - [SEO/AEO/GEO Service](https://shifter.co/ai-visibility-retainer.html): USD 4,000/month service details, scope, included work, exclusions, guarantee, and checkout path
-- [Research note: AI SDR visibility](https://shifter.co/ai-sdr-visibility-note.html): 30-check snapshot findings — target appeared in 7 of 30 answers
+- [Research note: AI SDR visibility](https://shifter.co/ai-sdr-visibility-note.html): Historical July 2026 three-engine research; not a current client outcome
 - [Insights](https://shifter.co/insights): Shifter research and field guides on SEO, AEO, GEO, and AI visibility
 - [SEO vs AEO vs GEO](https://shifter.co/insights/seo-vs-aeo-vs-geo): Practical explainer of what overlaps, what changes, and where B2B teams should start
 - [The 14 Best AEO & GEO Agencies in 2026](https://shifter.co/insights/best-aeo-geo-agencies-2026): Disclosure-first review of the AEO/GEO agency landscape

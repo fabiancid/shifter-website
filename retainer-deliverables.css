@@ -1,0 +1,114 @@
+/* Tangible deliverables. Page-local styles; checkout and commercial terms
+   retain their existing markup, styles and behavior. */
+.deliverables, .deliverables-scope { color: #252a25; font-family: "Geist", ui-sans-serif, sans-serif; scroll-margin-top: 104px; }
+.deliverables-wrap { width: min(1180px, calc(100% - 80px)); margin-inline: auto; }
+.deliverables { padding: 96px 0 88px; background: #f3f1e9; overflow: clip; }
+.deliverables-heading { position: relative; max-width: 750px; margin-bottom: 62px; }
+.deliverables-heading > p { margin: 0 0 25px; color: #5e6459; font-size: 16px; line-height: 1.5; }
+.deliverables-heading h2 { margin: 0; color: #252a25; font-size: clamp(46px, 5.5vw, 72px); font-weight: 400; line-height: 1.02; letter-spacing: -.055em; }
+.deliverables :is(h2 em, .plan-sheet-title em, .publish-journal em, .note-front em), .deliverables-scope h2 em { font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.045em; }
+.deliverables-heading h2 em { color: #ba4425; }
+.deliverables-flourish { position: absolute; left: 68%; bottom: 6px; width: 170px; color: #c74b2c; }
+.deliverables-stage { display: grid; grid-template-columns: 1fr 1.24fr 1fr; align-items: end; gap: clamp(26px, 3.4vw, 48px); }
+.deliverable { min-width: 0; }
+.deliverable-art { position: relative; height: 310px; margin-bottom: 38px; isolation: isolate; pointer-events: none; }
+.deliverable h3 { margin: 0 0 13px; font-size: 29px; font-weight: 400; line-height: 1.2; letter-spacing: -.04em; color: #252a25; }
+.deliverable > p { margin: 0; min-height: 3.2em; font-size: 18px; line-height: 1.6; letter-spacing: -.025em; color: #555c51; }
+
+/* A priority sheet: live typography, cotton paper, one orange tab. */
+.plan-art { perspective: 1000px; }
+.plan-folder { position: absolute; inset: 38px 15px 9px 10px; border-radius: 5px 12px 12px 12px; background: #cc5737; transform: rotate(-8deg); }
+.plan-folder::before { content: ""; position: absolute; top: -13px; left: 0; width: 42%; height: 24px; background: inherit; border-radius: 8px 13px 0 0; }
+.plan-sheet { position: absolute; inset: 18px 20px 20px 24px; padding: 28px 28px 20px; background: #fffdf5; border: 1px solid #e3dfd0; box-shadow: 0 22px 35px -23px #55472770; transform: rotate(-3deg); }
+.plan-sheet-title { display: block; margin-bottom: 22px; font-size: 35px; line-height: 1.07; letter-spacing: -.045em; }
+.plan-rule { display: flex; align-items: center; gap: 11px; font-size: 16px; line-height: 1.5; padding: 7px 0; border-bottom: 1px solid #dedfd1; }
+.plan-rule i { width: 8px; height: 8px; border: 1px solid #a7583a; border-radius: 50%; }
+
+/* A page and an industry publication: two surfaces, one connected job. */
+.publish-art { height: 340px; }
+.publish-halo { position: absolute; inset: 25px 5px 0; border-radius: 50%; background: #e8deca; }
+.publish-window { position: absolute; left: 0; top: 33px; width: 76%; height: 228px; background: #fffdf7; border: 1px solid #d8d5ca; border-radius: 12px; box-shadow: 0 25px 38px -28px #433a2970; transform: rotate(-7deg); }
+.publish-chrome { display: flex; gap: 5px; padding: 12px 14px; border-bottom: 1px solid #e2e1d8; }
+.publish-chrome i { width: 5px; height: 5px; background: #abb0a5; border-radius: 50%; }
+.publish-word { display: block; margin: 36px 26px 0; font-size: 58px; line-height: 1; font-family: Georgia, "Times New Roman", serif; letter-spacing: -.055em; }
+.publish-underline { display: block; width: 65%; margin: 3px 24px; color: #ce5735; }
+.publish-journal { position: absolute; right: 0; bottom: 0; width: 50%; height: 218px; display: flex; align-items: center; padding: 24px 22px 24px 28px; background: #303930; border-left: 9px solid #ed754d; color: #fff9ed; box-shadow: 10px 20px 28px -20px #40382180; transform: rotate(8deg); }
+.publish-journal span { font-family: Georgia, "Times New Roman", serif; font-size: clamp(29px, 2.5vw, 35px); line-height: 1.05; letter-spacing: -.04em; }
+
+/* A monthly note, without invented charts, scores or performance claims. */
+.note-art { height: 310px; }
+.note-back { position: absolute; inset: 43px 12px 3px 8px; background: #d6dbc8; border: 1px solid #cbd0bd; transform: rotate(8deg); }
+.note-front { position: absolute; inset: 17px 13px 22px 17px; display: flex; flex-direction: column; justify-content: space-between; padding: 35px 28px 24px; background: #fffdf6; border: 1px solid #e0ddcf; box-shadow: 0 22px 34px -24px #55472770; transform: rotate(3deg); }
+.note-front::after { content: ""; position: absolute; top: -1px; right: -1px; width: 36px; height: 36px; background: linear-gradient(225deg, #f3f1e9 49%, #e2dfd3 50%); border-bottom-left-radius: 4px; }
+.note-front > span { font-size: 37px; line-height: 1.06; letter-spacing: -.055em; }
+.note-signature { display: block; width: 65px; height: 24px; border-bottom: 2px solid #c85732; border-radius: 50%; transform: rotate(-9deg); }
+
+/* Full details stay in native HTML; essential scope is visible before opening. */
+.deliverables-scope { padding: 60px 0 76px; background: #faf9f5; }
+.scope-intro { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center; padding-bottom: 38px; }
+.scope-intro h2 { margin: 0; font-size: clamp(28px, 3.1vw, 40px); line-height: 1.12; font-weight: 400; letter-spacing: -.04em; }
+.scope-intro p { justify-self: end; margin: 0; font-size: 17px; line-height: 1.65; color: #565f51; }
+.scope-details { border-block: 1px solid #cbd0c1; }
+.scope-details > summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 76px; padding-block: 20px; color: #2a3028; font-size: 18px; cursor: pointer; list-style: none; }
+.scope-details > summary::-webkit-details-marker { display: none; }
+.scope-details > summary span { font-size: 30px; font-weight: 400; color: #b94627; transition: transform .25s ease; }
+.scope-details[open] > summary span { transform: rotate(45deg); }
+.deliverables-scope .boundary-list-wrap { gap: 54px; padding: 8px 0 38px; }
+.deliverables-scope .boundary-list { padding: 0; border: 0; border-radius: 0; background: transparent; }
+.deliverables-scope .boundary-list h3 { margin: 0 0 18px; font-size: 20px; font-weight: 500; }
+.deliverables-scope .pricing-list { margin: 0; color: #4f584a; }
+.deliverables-scope .pricing-list li { font-size: 16px; line-height: 1.6; }
+.deliverables-scope :focus-visible { outline: 3px solid #252a25; outline-offset: 5px; }
+#included-title { scroll-margin-top: 120px; }
+
+/* Existing scroll controller; no idle loops, hidden copy or scroll trapping. */
+@media (prefers-reduced-motion: no-preference) and (min-width: 760px) {
+  .deliverables-stage[data-scroll-ready] .plan-sheet { transform: translateY(calc((.65 - var(--scene-progress)) * 25px)) rotate(calc(-7deg + var(--scene-progress) * 7deg)); }
+  .deliverables-stage[data-scroll-ready] .publish-window { transform: translateX(calc((.5 - var(--scene-progress)) * -16px)) rotate(calc(-10deg + var(--scene-progress) * 6deg)); }
+  .deliverables-stage[data-scroll-ready] .publish-journal { transform: translateY(calc((.5 - var(--scene-progress)) * 25px)) rotate(calc(12deg - var(--scene-progress) * 8deg)); }
+  .deliverables-stage[data-scroll-ready] .publish-underline path { stroke-dasharray: 1; stroke-dashoffset: clamp(0, calc(1 - var(--scene-progress) * 2.2), 1); }
+  .deliverables-stage[data-scroll-ready] .note-front { transform: translateY(calc((.5 - var(--scene-progress)) * 35px)) rotate(calc(8deg - var(--scene-progress) * 8deg)); }
+}
+@media (max-width: 1023px) {
+  .deliverables-wrap { width: calc(100% - 48px); }
+  .deliverables-stage { gap: 20px; grid-template-columns: 1fr 1.1fr 1fr; }
+  .deliverable-art, .note-art { height: 270px; }
+  .publish-art { height: 290px; }
+  .plan-sheet { inset: 18px 6px 10px 12px; padding: 24px 18px; }
+  .plan-sheet-title { font-size: 29px; }
+  .plan-rule { padding-block: 5px; }
+  .publish-window { height: 210px; }
+  .publish-word { font-size: 46px; margin-left: 18px; }
+  .publish-journal { height: 190px; width: 55%; padding: 18px 12px; }
+  .publish-journal span { font-size: 27px; }
+  .note-front { inset: 17px 8px 12px 9px; padding: 30px 18px 20px; }
+  .note-front > span { font-size: 30px; }
+  .deliverable h3 { font-size: 25px; }
+  .deliverable > p { font-size: 17px; }
+}
+@media (max-width: 759px) {
+  .deliverables { padding: 64px 0 62px; }
+  .deliverables-wrap { width: calc(100% - 40px); }
+  .deliverables-heading { margin-bottom: 42px; }
+  .deliverables-heading h2 { font-size: clamp(44px, 10vw, 62px); }
+  .deliverables-flourish { display: none; }
+  .deliverables-stage { grid-template-columns: 1fr; gap: 50px; max-width: 390px; margin-inline: auto; }
+  .deliverable-art { max-width: 310px; height: 288px; margin: 0 auto 30px; }
+  .plan-sheet { inset: 18px 20px 10px 24px; padding: 26px; }
+  .plan-sheet-title { font-size: 34px; }
+  .plan-rule { padding-block: 7px; }
+  .publish-art { height: 310px; }
+  .publish-window { height: 220px; }
+  .publish-word { font-size: 56px; margin-left: 25px; }
+  .publish-journal { width: 49%; height: 200px; padding: 20px 15px; }
+  .publish-journal span { font-size: 30px; }
+  .note-front { inset: 17px 18px 17px 23px; padding: 34px 27px 22px; }
+  .note-front > span { font-size: 37px; }
+  .deliverable h3 { font-size: 29px; }
+  .deliverable > p { min-height: 0; font-size: 18px; }
+  .scope-intro { grid-template-columns: 1fr; gap: 24px; padding-bottom: 30px; }
+  .scope-intro p { justify-self: start; font-size: 16px; }
+  .deliverables-scope { padding: 48px 0 54px; }
+  .deliverables-scope .boundary-list-wrap { grid-template-columns: 1fr; gap: 30px; }
+}
+@media (prefers-reduced-motion: reduce) { .scope-details > summary span { transition: none; } }
